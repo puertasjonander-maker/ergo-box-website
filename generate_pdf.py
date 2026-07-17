@@ -75,7 +75,7 @@ def draw_status_legend(c, y):
     c.drawString(30*mm, y, "ROJO — Intervención urgente, suspender uso")
 
 def create_pdf():
-    c = canvas.Canvas("/home/hermes/ergo-box-website-v2/guia-mantenimiento-ergo-box.pdf", pagesize=A4)
+    c = canvas.Canvas("/home/hermes/ergo-box-website/guia-mantenimiento-ergo-box.pdf", pagesize=A4)
     width, height = A4
     
     # PAGE 1: Cover + Introduction
@@ -300,12 +300,12 @@ def create_pdf():
     
     c.showPage()
     
-    # PAGE 4: Structures & Kettlebells
+    # PAGE 4: BikeErg & SkiErg
     c.setFillColor(PAPER)
     c.rect(0, 0, width, height, fill=1)
     
     y = height - 30*mm
-    draw_section_header(c, "3. Rigs y Estructuras", y, width)
+    draw_section_header(c, "3. BikeErg", y, width)
     
     # Weekly
     y -= 20*mm
@@ -315,10 +315,10 @@ def create_pdf():
     y -= 8*mm
     
     weekly_items = [
-        "Inspección visual de soldaduras y uniones",
-        "Comprobar estabilidad general de la estructura",
-        "Revisar anclajes al suelo o pared",
-        "Verificar que no hay elementos sueltos"
+        "Limpiar el exterior del ventilador con paño seco",
+        "Comprobar que los pedales giran sin juego excesivo",
+        "Verificar que el monitor se enciende correctamente",
+        "Escuchar: ruidos de roce = algo se ha movido"
     ]
     
     for item in weekly_items:
@@ -333,19 +333,19 @@ def create_pdf():
     y -= 8*mm
     
     monthly_items = [
-        "Apretar toda la tornillería accesible",
-        "Limpiar y engrasar articulaciones móviles",
-        "Comprobar nivelación de barras paralelas",
-        "Revisar estado de agarres y protecciones"
+        "Abrir la carcasa y aspirar el polvo del ventilador",
+        "Comprobar tensión de la cadena y lubricar si chirría",
+        "Revisar estado de la batería del monitor",
+        "Apretar pedales y bielas si hay holgura"
     ]
     
     for item in monthly_items:
         draw_checklist_item(c, item, y)
         y -= 7*mm
     
-    # Kettlebells section
+    # SkiErg section
     y -= 15*mm
-    draw_section_header(c, "4. Kettlebells y Mancuernas", y, width)
+    draw_section_header(c, "4. SkiErg", y, width)
     
     # Weekly
     y -= 20*mm
@@ -354,14 +354,14 @@ def create_pdf():
     c.drawString(20*mm, y, "SEMANAL")
     y -= 8*mm
     
-    kb_weekly = [
-        "Limpieza general con desinfectante",
-        "Revisión visual de grietas o desgaste",
-        "Comprobar que el asa no está suelta",
-        "Verificar que no hay bordes afilados"
+    sk_weekly = [
+        "Limpiar las cuerdas con paño ligeramente húmedo",
+        "Comprobar que las poleas giran suave y sin ruido",
+        "Verificar que el monitor registra bien cada tirón",
+        "Revisar que los agarres no tienen grietas"
     ]
     
-    for item in kb_weekly:
+    for item in sk_weekly:
         draw_checklist_item(c, item, y)
         y -= 7*mm
     
@@ -394,10 +394,10 @@ def create_pdf():
     # Table rows
     y -= 15*mm
     table_data = [
-        ("RowErgs", "Limpieza básica", "Cadena y raíles", "Revisión completa"),
+        ("RowErg", "Limpieza básica", "Cadena y raíles", "Revisión completa"),
         ("Barras", "Cepillado", "Aceite protector", "Rodamientos"),
-        ("Estructuras", "Inspección visual", "Tornillería", "Revisión estructural"),
-        ("Kettlebells", "Limpieza", "Inspección soldaduras", "—")
+        ("BikeErg", "Ventilador", "Cadena y batería", "Revisión completa"),
+        ("SkiErg", "Cuerdas y poleas", "Tensión cuerda", "—")
     ]
     
     c.setFillColor(INK)
@@ -464,7 +464,7 @@ def create_pdf():
     c.drawString(20*mm, 20*mm, "© 2026 ERGO BOX · Página 5 de 5 · ergobox.es")
     
     c.save()
-    print("✅ PDF generated: /home/hermes/ergo-box-website-v2/guia-mantenimiento-ergo-box.pdf")
+    print("✅ PDF generated: /home/hermes/ergo-box-website/guia-mantenimiento-ergo-box.pdf")
 
 if __name__ == "__main__":
     create_pdf()
