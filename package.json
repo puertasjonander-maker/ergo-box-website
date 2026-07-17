@@ -1,0 +1,13 @@
+{
+  "name": "ergo-box-website",
+  "version": "2.0.0",
+  "description": "Landing page editorial de ERGO BOX — Mantenimiento especializado de boxes de CrossFit en Málaga. Sitio estático.",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "build": "echo 'Static site — no build step required'"
+  },
+  "keywords": ["crossfit", "mantenimiento", "malaga", "ergobox", "landing"],
+  "author": "ERGO BOX",
+  "license": "UNLICENSED"
+}
