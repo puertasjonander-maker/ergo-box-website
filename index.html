@@ -6,6 +6,35 @@
     <title>ERGO BOX — El mantenimiento que tu box merece · Málaga</title>
     <meta name="description" content="Primera revisión de un erg, gratis. Mantenimiento especializado para boxes de CrossFit en Málaga. Sin spam, sin corporate. Atleta a atleta.">
     
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ergobox.es/">
+    <meta property="og:title" content="ERGO BOX — El mantenimiento que tu box merece · Málaga">
+    <meta property="og:description" content="Primera revisión de un erg, gratis. Mantenimiento especializado de boxes de CrossFit en Málaga.">
+    <meta property="og:image" content="https://ergobox.es/assets/hero-barbell.jpg">
+    <meta property="og:locale" content="es_ES">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ERGO BOX — Mantenimiento de boxes · Málaga">
+    <meta name="twitter:description" content="Primera revisión de un erg, gratis. Tus coaches entrenan, del equipo nos encargamos nosotros.">
+    <meta name="twitter:image" content="https://ergobox.es/assets/hero-barbell.jpg">
+    <link rel="canonical" href="https://ergobox.es/">
+    
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ERGO BOX",
+      "description": "Mantenimiento especializado de boxes de CrossFit y entrenamiento funcional en Málaga",
+      "url": "https://ergobox.es",
+      "email": "hola@ergobox.es",
+      "areaServed": {"@type": "City", "name": "Málaga"},
+      "priceRange": "€€",
+      "image": "https://ergobox.es/assets/hero-barbell.jpg",
+      "sameAs": ["https://instagram.com/ergobox.es"]
+    }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -523,10 +552,10 @@
             top: 0; right: 0;
             width: 60%;
             height: 100%;
-            background-image: url('https://v3b.fal.media/files/b/0aa29c9f/2H31V_xAKC9e-1BWJMd6T_zYCwJE17.png');
+            background-image: url('assets/offer-bg.jpg');
             background-size: cover;
             background-position: center;
-            opacity: 0.06;
+            opacity: 0.12;
             pointer-events: none;
         }
 
@@ -1147,12 +1176,26 @@
         }
 
         @media (max-width: 640px) {
+            /* === NAV === */
             nav {
-                padding: 16px 24px;
+                padding: 14px 20px;
             }
             
             .nav-links {
                 display: none;
+            }
+            
+            .nav-cta {
+                font-size: 13px;
+                padding: 10px 16px;
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+            }
+            
+            /* === HERO === */
+            .hero {
+                padding-top: 70px;
             }
             
             .hero-content,
@@ -1162,30 +1205,169 @@
             .booking,
             .gift,
             .trust {
-                padding-left: 24px;
-                padding-right: 24px;
+                padding-left: 20px;
+                padding-right: 20px;
             }
             
+            .hero-content {
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+            
+            .hero h1, .hero-title {
+                font-size: clamp(34px, 9vw, 46px) !important;
+                line-height: 1.1 !important;
+            }
+            
+            .hero-image {
+                min-height: 320px;
+            }
+            
+            /* === CTA BUTTONS: full-width, thumb-friendly === */
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            
+            .hero-actions a,
+            .cta-primary, .cta-secondary,
+            .btn-primary, .btn-secondary {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                min-height: 52px;
+                font-size: 16px;
+                text-align: center;
+            }
+            
+            /* === FREE BADGE === */
             .free-badge {
-                width: 120px;
-                height: 120px;
+                width: 110px;
+                height: 110px;
                 right: 16px;
                 bottom: 16px;
             }
             
             .free-badge .badge-main {
-                font-size: 32px;
+                font-size: 30px;
             }
             
+            /* === PROBLEM SECTION === */
             .problem-item {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 12px;
             }
             
             .problem-num {
-                font-size: 48px;
+                font-size: 42px;
+            }
+            
+            /* === OFFER / PRICE === */
+            .offer-image-wrapper {
+                margin-top: 24px;
+            }
+            
+            .price-tag {
+                position: static;
+                margin-top: 16px;
+                display: inline-block;
+            }
+            
+            /* === BOOKING === */
+            .booking-steps {
+                gap: 20px;
+            }
+            
+            .cal-embed-wrapper iframe {
+                height: 560px;
+            }
+            
+            /* === GIFT FORM: stack inputs, big touch targets === */
+            .gift-form {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .gift-form input {
+                width: 100%;
+                min-height: 52px;
+                font-size: 16px; /* prevents iOS zoom */
+                padding: 14px 16px;
+            }
+            
+            .gift-form button {
+                width: 100%;
+                min-height: 52px;
+                font-size: 16px;
+            }
+            
+            .gift-visual {
+                margin-top: 32px;
+            }
+            
+            /* === CHECKLIST ITEMS === */
+            .checklist-item label {
+                font-size: 15px;
+                line-height: 1.4;
+            }
+            
+            .checklist-item input[type="checkbox"] {
+                width: 22px;
+                height: 22px;
+            }
+            
+            /* === TRUST GRID === */
+            .trust-cell {
+                padding: 24px 20px;
+            }
+            
+            /* === FOOTER === */
+            .footer-content {
+                gap: 32px;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            /* === STICKY MOBILE CTA === */
+            .mobile-sticky-cta {
+                display: block !important;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 200;
+                padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+                background: linear-gradient(to top, var(--ink) 85%, transparent);
+            }
+            
+            .mobile-sticky-cta a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 52px;
+                background: var(--amber);
+                color: var(--ink);
+                font-weight: 700;
+                font-size: 16px;
+                border-radius: 8px;
+                text-decoration: none;
+                box-shadow: 0 4px 20px rgba(217,123,41,0.4);
+            }
+            
+            body {
+                padding-bottom: 84px; /* space for sticky CTA */
             }
         }
+        
+        /* Sticky CTA hidden on desktop */
+        .mobile-sticky-cta { display: none; }
 
         /* ============ PRINT ============ */
         @media print {
@@ -1234,7 +1416,7 @@
         </div>
         
         <div class="hero-image">
-            <img src="https://v3b.fal.media/files/b/0aa29c9a/IJd3uxXWMQSoDbyWh-LGz_I9xvcIxT.png" alt="Barbell knurling detail">
+            <img src="assets/hero-barbell.jpg" alt="Barbell knurling detail" loading="eager" fetchpriority="high">
             <div class="hero-image-caption">
                 Cada barra cuenta una historia. Nosotros la escuchamos.
             </div>
@@ -1365,7 +1547,7 @@
             
             <div class="offer-right">
                 <div class="offer-image-wrapper">
-                    <img src="https://v3b.fal.media/files/b/0aa29c9c/S5erJc1dmVVev-tlCS4ho_Tp9aYYS9.png" alt="Maintenance work on rowing machine">
+                    <img src="assets/offer-erg.jpg" alt="Maintenance work on rowing machine" loading="lazy">
                     <div class="offer-image-tag">Revisión completa incluida</div>
                     <div class="price-tag">
                         <div class="price-old">60€</div>
@@ -1416,18 +1598,19 @@
                 </div>
             </div>
             
-            <!-- Cal.com Embed Placeholder -->
-            <div class="cal-embed-placeholder">
-                <h3>📅 Aquí va el calendario de Cal.com</h3>
-                <p>Una vez crees tu cuenta en <strong>cal.com</strong> (gratis), reemplaza este bloque con el código embed:</p>
-                <code>
-&lt;!-- Cal.com embed code --&gt;<br>
-&lt;iframe src="https://cal.com/ergobox/revision-gratuita" <br>
-&nbsp;&nbsp;width="100%" height="600px" frameborder="0"&gt;<br>
-&lt;/iframe&gt;
-                </code>
-                <p style="margin-top: 24px; font-size: 14px; color: var(--steel);">
-                    <strong>Ventajas de Cal.com:</strong> Emails automáticos de confirmación, recordatorios, sincronización con tu calendario, y es gratis hasta 500 reservas/mes.
+            <!-- Cal.com Embed -->
+            <div class="cal-embed-wrapper">
+                <iframe 
+                    src="https://cal.com/ergobox.es/revision-gratuita?embed=true&theme=light&hideEventTypeDetails=1" 
+                    width="100%" 
+                    height="640" 
+                    frameborder="0"
+                    title="Reserva tu revisión gratuita"
+                    loading="lazy"
+                    style="border-radius: 12px; background: #fff; box-shadow: 0 8px 40px rgba(0,0,0,0.12);"
+                ></iframe>
+                <p style="margin-top: 20px; font-size: 14px; color: var(--steel); text-align: center;">
+                    🔒 Solicitud recibida al instante. <strong>Jon confirma personalmente cada cita</strong> — recibirás el email de confirmación con la fecha definitiva en menos de 24h.
                 </p>
             </div>
         </div>
@@ -1447,9 +1630,10 @@
                     Un checklist profesional con todo lo que tienes que revisar en tu box, cuándo, y cómo detectar problemas antes de que te exploten en la cara.
                 </p>
                 
-                <form class="gift-form" id="leadForm">
-                    <input type="email" name="email" placeholder="tu@email.com" required>
-                    <input type="text" name="box_name" placeholder="Nombre de tu box" required>
+                <form class="gift-form" id="leadForm" action="https://formspree.io/f/TU-FORM-ID" method="POST">
+                    <input type="hidden" name="_subject" value="🎁 Nueva descarga de guía — ERGO BOX">
+                    <input type="email" name="email" placeholder="tu@email.com" required aria-label="Tu email">
+                    <input type="text" name="box_name" placeholder="Nombre de tu box" required aria-label="Nombre de tu box">
                     <button type="submit">Descargar guía gratuita</button>
                     <p class="gift-privacy">
                         Te enviaremos la guía por email. Puede que algún consejo extra de vez en cuando. Nada de spam. Puedes darte de baja cuando quieras.
@@ -1585,25 +1769,52 @@
         </div>
     </footer>
 
+    <!-- Sticky mobile CTA -->
+    <div class="mobile-sticky-cta">
+        <a href="#reservar">⚡ Primera revisión de erg · GRATIS</a>
+    </div>
+
     <script>
-        // Lead form handling
-        document.getElementById('leadForm').addEventListener('submit', function(e) {
+        // Lead form handling — Formspree AJAX + auto PDF download
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const email = this.email.value;
-            const boxName = this.box_name.value;
-            
-            // TODO: Integrate with Formspree or similar
-            console.log('Lead captured:', { email, boxName });
-            
-            // Show success state
-            this.innerHTML = `
+            const form = this;
+            const email = form.email.value;
+            const boxName = form.box_name.value;
+            const btn = form.querySelector('button');
+            btn.disabled = true;
+            btn.textContent = 'Enviando…';
+
+            try {
+                // If Formspree ID not configured yet, skip remote capture gracefully
+                const action = form.getAttribute('action');
+                if (action && !action.includes('TU-FORM-ID')) {
+                    await fetch(action, {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(form)
+                    });
+                }
+            } catch (err) { console.warn('Lead capture failed, continuing to download:', err); }
+
+            // Auto-download the PDF guide
+            const a = document.createElement('a');
+            a.href = 'guia-mantenimiento-ergo-box.pdf';
+            a.download = 'guia-mantenimiento-ergo-box.pdf';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+
+            // Success state
+            form.innerHTML = `
                 <div style="padding: 32px; background: rgba(245,241,232,0.1); border-radius: 8px; text-align: center; color: var(--paper);">
                     <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
                     <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 8px;">
-                        ¡Guía en camino!
+                        ¡Guía descargada!
                     </div>
                     <div style="font-family: var(--sans); font-size: 14px; opacity: 0.8;">
-                        Revisa tu email. Te la hemos enviado a ${email}
+                        Si no se abrió, <a href="guia-mantenimiento-ergo-box.pdf" style="color: var(--amber); text-decoration: underline;">pulsa aquí</a>.<br>
+                        También te la enviamos a ${email}
                     </div>
                 </div>
             `;
