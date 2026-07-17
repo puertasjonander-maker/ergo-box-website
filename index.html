@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERGO BOX — El mantenimiento que tu box merece · Málaga</title>
+    <meta name="description" content="Primera revisión de un erg, gratis. Mantenimiento especializado para boxes de CrossFit en Málaga. Sin spam, sin corporate. Atleta a atleta.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ink: #0f0e0c;
+            --paper: #f5f1e8;
+            --paper-warm: #ede6d8;
+            --amber: #d97b29;
+            --amber-deep: #b25a0e;
+            --steel: #4a4a48;
+            --line: #d4cdc0;
+            --green: #2a5d3a;
+            --red: #a83232;
+            
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'Inter', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--sans);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Grain texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* ============ NAVIGATION ============ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, var(--paper) 0%, transparent 100%);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-logo {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .nav-logo .gear {
+            display: inline-block;
+            color: var(--amber);
+            animation: gear-spin 12s linear infinite;
+        }
+
+        @keyframes gear-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--steel);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+
+        .nav-cta {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 20px;
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--amber);
+            transform: translateY(-1px);
+        }
+
+        /* ============ HERO - Editorial Magazine Style ============ */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            padding: 80px 48px 80px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--amber);
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(48px, 6vw, 84px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber);
+        }
+
+        .hero h1 .strikethrough {
+            position: relative;
+            color: var(--steel);
+        }
+
+        .hero h1 .strikethrough::after {
+            content: '';
+            position: absolute;
+            left: -4px; right: -4px;
+            top: 55%;
+            height: 4px;
+            background: var(--amber);
+            transform: rotate(-2deg);
+        }
+
+        .hero-lede {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--steel);
+            max-width: 480px;
+            margin-bottom: 48px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 600;
+            padding: 18px 32px;
+            background: var(--ink);
+            color: var(--paper);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--amber);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(217, 123, 41, 0.3);
+        }
+
+        .btn-primary .arrow {
+            transition: transform 0.3s;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ink);
+            text-decoration: none;
+            padding: 18px 8px;
+            border-bottom: 2px solid var(--line);
+            transition: border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--amber);
+        }
+
+        .hero-image {
+            position: relative;
+            overflow: hidden;
+            background: var(--paper-warm);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .hero-image-caption {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--paper);
+            background: rgba(15, 14, 12, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 12px 16px;
+            border-radius: 4px;
+        }
+
+        /* Free badge */
+        .free-badge {
+            position: absolute;
+            top: 140px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: var(--amber);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            transform: rotate(12deg);
+            box-shadow: 0 8px 32px rgba(217, 123, 41, 0.4);
+            z-index: 10;
+            transition: transform 0.3s;
+        }
+
+        .free-badge:hover {
+            transform: rotate(6deg) scale(1.05);
+        }
+
+        .free-badge .badge-top {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--paper);
+            opacity: 0.9;
+        }
+
+        .free-badge .badge-main {
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--paper);
+            line-height: 1;
+            margin: 4px 0;
+        }
+
+        .free-badge .badge-bottom {
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--paper);
+            opacity: 0.9;
+        }
+
+        /* ============ MANIFESTO SECTION ============ */
+        .manifesto {
+            padding: 120px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .manifesto-header {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            margin-bottom: 80px;
+        }
+
+        .section-number {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--steel);
+            margin-bottom: 16px;
+        }
+
+        .manifesto-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 64px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .manifesto-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber);
+        }
+
+        .manifesto-content {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--steel);
+        }
+
+        .manifesto-content p + p {
+            margin-top: 24px;
+        }
+
+        .manifesto-content strong {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            margin: 80px 0;
+            padding: 60px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .pull-quote blockquote {
+            font-family: var(--serif);
+            font-size: clamp(28px, 4vw, 44px);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            max-width: 900px;
+            margin: 0 auto 24px;
+        }
+
+        .pull-quote cite {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber);
+        }
+
+        /* ============ THE PROBLEM - Editorial List ============ */
+        .problem {
+            padding: 120px 80px;
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .problem-header {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+        }
+
+        .problem .section-number {
+            color: var(--amber);
+        }
+
+        .problem-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 64px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--paper);
+        }
+
+        .problem-subtitle {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--paper);
+            opacity: 0.7;
+            margin-top: 24px;
+        }
+
+        .problem-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .problem-item {
+            display: grid;
+            grid-template-columns: 80px 1fr 2fr;
+            gap: 48px;
+            padding: 48px 0;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+            align-items: start;
+            transition: all 0.3s;
+        }
+
+        .problem-item:hover {
+            padding-left: 24px;
+            background: rgba(217, 123, 41, 0.05);
+        }
+
+        .problem-num {
+            font-family: var(--serif);
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--amber);
+            opacity: 0.4;
+        }
+
+        .problem-name {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--paper);
+        }
+
+        .problem-desc {
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--paper);
+            opacity: 0.7;
+        }
+
+        .problem-desc strong {
+            color: var(--amber);
+            font-weight: 600;
+        }
+
+        /* ============ THE OFFER - Hero Gift Section ============ */
+        .offer {
+            padding: 120px 80px;
+            background: linear-gradient(135deg, var(--paper) 0%, var(--paper-warm) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 60%;
+            height: 100%;
+            background-image: url('https://v3b.fal.media/files/b/0aa29c9f/2H31V_xAKC9e-1BWJMd6T_zYCwJE17.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.06;
+            pointer-events: none;
+        }
+
+        .offer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .offer-left .section-number {
+            color: var(--amber);
+        }
+
+        .offer-title {
+            font-family: var(--serif);
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 900;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
+
+        .offer-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber);
+        }
+
+        .offer-desc {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--steel);
+            margin-bottom: 40px;
+        }
+
+        .offer-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .offer-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--steel);
+        }
+
+        .offer-feature::before {
+            content: '—';
+            font-family: var(--serif);
+            color: var(--amber);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .offer-feature strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .offer-right {
+            position: relative;
+        }
+
+        .offer-image-wrapper {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(15, 14, 12, 0.2);
+        }
+
+        .offer-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(20%) contrast(1.05);
+        }
+
+        .offer-image-tag {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--paper);
+            background: var(--amber);
+            padding: 8px 14px;
+            border-radius: 2px;
+        }
+
+        .price-tag {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 20px 28px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .price-tag .price-old {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 400;
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        .price-tag .price-new {
+            font-family: var(--serif);
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--amber);
+        }
+
+        /* ============ BOOKING SECTION ============ */
+        .booking {
+            padding: 120px 80px;
+            background: var(--paper);
+        }
+
+        .booking-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .booking .section-number {
+            color: var(--amber);
+            justify-content: center;
+            display: flex;
+        }
+
+        .booking-title {
+            font-family: var(--serif);
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .booking-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber);
+        }
+
+        .booking-desc {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--steel);
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .booking-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 64px;
+            text-align: left;
+        }
+
+        .booking-step {
+            padding: 32px;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 4px;
+        }
+
+        .booking-step-num {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber);
+            margin-bottom: 12px;
+        }
+
+        .booking-step-title {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .booking-step-desc {
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--steel);
+        }
+
+        .cal-embed-placeholder {
+            background: white;
+            border: 2px dashed var(--line);
+            border-radius: 8px;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .cal-embed-placeholder h3 {
+            font-family: var(--serif);
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .cal-embed-placeholder p {
+            font-family: var(--sans);
+            color: var(--steel);
+            margin-bottom: 24px;
+        }
+
+        .cal-embed-placeholder code {
+            display: block;
+            font-family: var(--mono);
+            font-size: 13px;
+            background: var(--paper-warm);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: left;
+            overflow-x: auto;
+            color: var(--steel);
+        }
+
+        /* ============ LEAD MAGNET - The Gift ============ */
+        .gift {
+            padding: 120px 80px;
+            background: var(--green);
+            color: var(--paper);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245,241,232,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .gift-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gift-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber);
+            margin-bottom: 24px;
+        }
+
+        .gift-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 56px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--paper);
+            margin-bottom: 24px;
+        }
+
+        .gift-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber);
+        }
+
+        .gift-desc {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--paper);
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+
+        .gift-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            max-width: 400px;
+        }
+
+        .gift-form input {
+            font-family: var(--sans);
+            font-size: 16px;
+            padding: 16px 20px;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            background: rgba(245, 241, 232, 0.1);
+            color: var(--paper);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
+
+        .gift-form input::placeholder {
+            color: rgba(245, 241, 232, 0.5);
+        }
+
+        .gift-form input:focus {
+            outline: none;
+            background: rgba(245, 241, 232, 0.15);
+            border-color: var(--amber);
+        }
+
+        .gift-form button {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 600;
+            padding: 18px 32px;
+            background: var(--paper);
+            color: var(--green);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gift-form button:hover {
+            background: var(--amber);
+            color: var(--paper);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-privacy {
+            font-family: var(--sans);
+            font-size: 13px;
+            color: rgba(245, 241, 232, 0.6);
+            line-height: 1.5;
+        }
+
+        .gift-visual {
+            position: relative;
+        }
+
+        .checklist-card {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+
+        .checklist-card:hover {
+            transform: rotate(0deg);
+        }
+
+        .checklist-card-header {
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--line);
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: var(--green);
+        }
+
+        .checklist-item label {
+            font-family: var(--sans);
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--steel);
+            cursor: pointer;
+        }
+
+        .checklist-item input:checked + label {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        /* ============ TRUST - Editorial Approach ============ */
+        .trust {
+            padding: 120px 80px;
+            background: var(--paper);
+        }
+
+        .trust-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 64px;
+            border: 1px solid var(--line);
+        }
+
+        .trust-cell {
+            padding: 48px 40px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: white;
+        }
+
+        .trust-cell:nth-child(3n) {
+            border-right: none;
+        }
+
+        .trust-cell:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+
+        .trust-cell-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .trust-cell-title {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .trust-cell-desc {
+            font-family: var(--sans);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--steel);
+        }
+
+        /* ============ FOOTER ============ */
+        footer {
+            padding: 80px 80px 40px;
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 64px;
+        }
+
+        .footer-logo {
+            font-family: var(--serif);
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--paper);
+            margin-bottom: 16px;
+        }
+
+        .footer-logo .gear {
+            color: var(--amber);
+        }
+
+        .footer-tagline {
+            font-family: var(--serif);
+            font-size: 16px;
+            font-style: italic;
+            color: var(--steel);
+            opacity: 0.8;
+            margin-bottom: 24px;
+        }
+
+        .footer-section h4 {
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--amber);
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            font-family: var(--sans);
+            font-size: 15px;
+            color: var(--paper);
+            opacity: 0.7;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--amber);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 40px;
+            border-top: 1px solid rgba(245, 241, 232, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--steel);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-image {
+                min-height: 400px;
+            }
+            
+            .free-badge {
+                top: auto;
+                bottom: 40px;
+                right: 40px;
+                width: 140px;
+                height: 140px;
+            }
+            
+            .manifesto-header,
+            .problem-header,
+            .offer-content,
+            .gift-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .booking-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+            
+            .trust-cell:last-child {
+                border-bottom: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 16px 24px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content,
+            .manifesto,
+            .problem,
+            .offer,
+            .booking,
+            .gift,
+            .trust {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .free-badge {
+                width: 120px;
+                height: 120px;
+                right: 16px;
+                bottom: 16px;
+            }
+            
+            .free-badge .badge-main {
+                font-size: 32px;
+            }
+            
+            .problem-item {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .problem-num {
+                font-size: 48px;
+            }
+        }
+
+        /* ============ PRINT ============ */
+        @media print {
+            body::before { display: none; }
+            nav, .free-badge, .hero-actions, .gift-form { display: none; }
+            .hero { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="nav-logo">ERG<span class="gear">O</span> BOX</a>
+        <ul class="nav-links">
+            <li><a href="#manifiesto">Manifiesto</a></li>
+            <li><a href="#problemas">El problema</a></li>
+            <li><a href="#oferta">La oferta</a></li>
+            <li><a href="#regalo">El regalo</a></li>
+        </ul>
+        <a href="#reservar" class="nav-cta">Reservar revisión</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Mantenimiento especializado · Málaga</div>
+            
+            <h1>
+                Tus coaches <em>entrenan.</em><br>
+                Del equipo nos <em>encargamos</em> nosotros.
+            </h1>
+            
+            <p class="hero-lede">
+                Mantenimiento de boxes de CrossFit hecho por alguien que entiende lo que significa un WOD. Sin corporate. Sin spam. Atleta a atleta.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="#reservar" class="btn-primary">
+                    Primera revisión gratis
+                    <span class="arrow">→</span>
+                </a>
+                <a href="#regalo" class="btn-secondary">
+                    Descargar guía gratuita
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="https://v3b.fal.media/files/b/0aa29c9a/IJd3uxXWMQSoDbyWh-LGz_I9xvcIxT.png" alt="Barbell knurling detail">
+            <div class="hero-image-caption">
+                Cada barra cuenta una historia. Nosotros la escuchamos.
+            </div>
+        </div>
+        
+        <!-- Free badge -->
+        <div class="free-badge">
+            <div class="badge-top">Primera</div>
+            <div class="badge-main">GRATIS</div>
+            <div class="badge-bottom">Revisión erg</div>
+        </div>
+    </section>
+
+    <!-- Manifesto Section -->
+    <section class="manifesto" id="manifiesto">
+        <div class="manifesto-header">
+            <div>
+                <div class="section-number">01 — Manifiesto</div>
+            </div>
+            <div>
+                <h2 class="manifesto-title">
+                    No somos un <em>servicio técnico.</em><br>
+                    Somos <em>atletas</em> que arreglan cosas.
+                </h2>
+            </div>
+        </div>
+        
+        <div class="manifesto-content">
+            <p>
+                Sabemos lo que pasa cuando un RowErg chirria en mitad de un 2K. Conocemos el tacto de una barra bien cuidada. Y entendemos que tu box no es un negocio cualquiera — es tu <strong>templo</strong>.
+            </p>
+            <p>
+                Por eso no venimos con corbata ni PowerPoint. Venimos con herramientas, conocimiento, y la obsesión de alguien que ha roto suficiente equipo como para saber <strong>exactamente</strong> qué falla, cuándo falla, y cómo evitarlo.
+            </p>
+        </div>
+        
+        <div class="pull-quote">
+            <blockquote>
+                "El mantenimiento no es un gasto. Es la diferencia entre un box que dura y uno que cierra."
+            </blockquote>
+            <cite>— Filosofía ERGO BOX</cite>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problemas">
+        <div class="problem-header">
+            <div>
+                <div class="section-number">02 — El problema</div>
+            </div>
+            <div>
+                <h2 class="problem-title">¿Te suena familiar?</h2>
+                <p class="problem-subtitle">Los fantasmas que acechan cada box de Málaga</p>
+            </div>
+        </div>
+        
+        <div class="problem-list">
+            <div class="problem-item">
+                <div class="problem-num">01</div>
+                <div class="problem-name">El RowErg que chirria</div>
+                <div class="problem-desc">
+                    Sabes que la cadena necesita lubricación. Sabes que los raíles acumulan polvo. Pero entre la clase de las 7 y la programación del próximo mes, <strong>mañana</strong> siempre parece mejor momento. Hasta que un atleta se queja.
+                </div>
+            </div>
+            
+            <div class="problem-item">
+                <div class="problem-num">02</div>
+                <div class="problem-name">La barra que pierde agarre</div>
+                <div class="problem-desc">
+                    El knurling se desgasta. El acero se oxida. Y de repente, esa barra que costó 400€ es un peligro en manos de alguien haciendo un snatch pesado. <strong>Tu seguro no cubre negligencia.</strong>
+                </div>
+            </div>
+            
+            <div class="problem-item">
+                <div class="problem-num">03</div>
+                <div class="problem-name">El rig que nadie revisa</div>
+                <div class="problem-desc">
+                    Cien kipping pull-ups al día. Cada día. ¿Cuándo fue la última vez que apretaste esa tornillería? ¿O revisaste las soldaduras? <strong>La respuesta te asusta.</strong>
+                </div>
+            </div>
+            
+            <div class="problem-item">
+                <div class="problem-num">04</div>
+                <div class="problem-name">El mantenimiento "cuando haya tiempo"</div>
+                <div class="problem-desc">
+                    Spoiler: <strong>nunca hay tiempo.</strong> Tu pasión es entrenar personas, no desmontar ergs. Y cada día que pasa, el desgaste se convierte en avería. La avería, en gasto. El gasto, en dolor de cabeza.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer" id="oferta">
+        <div class="offer-content">
+            <div class="offer-left">
+                <div class="section-number">03 — La oferta</div>
+                
+                <h2 class="offer-title">
+                    Primera revisión<br>
+                    de un erg.<br>
+                    <em>Gratis.</em>
+                </h2>
+                
+                <p class="offer-desc">
+                    Sin letra pequeña. Sin compromiso. Venimos, revisamos, te damos un informe honesto, y si te gusta cómo trabajamos, hablamos.
+                </p>
+                
+                <div class="offer-features">
+                    <div class="offer-feature">
+                        <strong>Revisión completa:</strong> cadena, raíles, monitor, ventilador, tornillería
+                    </div>
+                    <div class="offer-feature">
+                        <strong>Limpieza básica:</strong> quitamos el polvo acumulado y dejamos el erg listo
+                    </div>
+                    <div class="offer-feature">
+                        <strong>Informe de estado:</strong> sistema semáforo — verde, ámbar, rojo — con recomendaciones
+                    </div>
+                    <div class="offer-feature">
+                        <strong>Presupuesto transparente:</strong> si hace falta algo más, te lo decimos claro y sin presión
+                    </div>
+                </div>
+                
+                <a href="#reservar" class="btn-primary">
+                    Reservar revisión gratuita
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+            
+            <div class="offer-right">
+                <div class="offer-image-wrapper">
+                    <img src="https://v3b.fal.media/files/b/0aa29c9c/S5erJc1dmVVev-tlCS4ho_Tp9aYYS9.png" alt="Maintenance work on rowing machine">
+                    <div class="offer-image-tag">Revisión completa incluida</div>
+                    <div class="price-tag">
+                        <div class="price-old">60€</div>
+                        <div class="price-new">0€</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="reservar">
+        <div class="booking-content">
+            <div class="section-number">04 — Reservar</div>
+            
+            <h2 class="booking-title">
+                Reserva tu revisión.<br>
+                <em>Automáticamente.</em>
+            </h2>
+            
+            <p class="booking-desc">
+                Elige el día y hora que te venga bien. Confirmamos por email en menos de 24 horas. Sin llamadas incómodas. Sin idas y venidas.
+            </p>
+            
+            <div class="booking-steps">
+                <div class="booking-step">
+                    <div class="booking-step-num">Paso 01</div>
+                    <div class="booking-step-title">Eliges fecha y hora</div>
+                    <div class="booking-step-desc">
+                        Calendario interactivo. Ves nuestra disponibilidad en tiempo real y seleccionas el hueco que mejor te encaje.
+                    </div>
+                </div>
+                
+                <div class="booking-step">
+                    <div class="booking-step-num">Paso 02</div>
+                    <div class="booking-step-title">Confirmamos por email</div>
+                    <div class="booking-step-desc">
+                        Te llega confirmación automática con los detalles. Si hay algún imprevisto, te avisamos con tiempo.
+                    </div>
+                </div>
+                
+                <div class="booking-step">
+                    <div class="booking-step-num">Paso 03</div>
+                    <div class="booking-step-title">Vamos y revisamos</div>
+                    <div class="booking-step-desc">
+                        Aparecemos, revisamos tu erg, y te dejamos un informe completo. Si te gusta, hablamos de mantenimiento continuo.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cal.com Embed Placeholder -->
+            <div class="cal-embed-placeholder">
+                <h3>📅 Aquí va el calendario de Cal.com</h3>
+                <p>Una vez crees tu cuenta en <strong>cal.com</strong> (gratis), reemplaza este bloque con el código embed:</p>
+                <code>
+&lt;!-- Cal.com embed code --&gt;<br>
+&lt;iframe src="https://cal.com/ergobox/revision-gratuita" <br>
+&nbsp;&nbsp;width="100%" height="600px" frameborder="0"&gt;<br>
+&lt;/iframe&gt;
+                </code>
+                <p style="margin-top: 24px; font-size: 14px; color: var(--steel);">
+                    <strong>Ventajas de Cal.com:</strong> Emails automáticos de confirmación, recordatorios, sincronización con tu calendario, y es gratis hasta 500 reservas/mes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift / Lead Magnet Section -->
+    <section class="gift" id="regalo">
+        <div class="gift-content">
+            <div>
+                <div class="gift-badge">🎁 El regalo</div>
+                
+                <h2 class="gift-title">
+                    La guía de mantenimiento que <em>deberías haber tenido</em> desde el día uno.
+                </h2>
+                
+                <p class="gift-desc">
+                    Un checklist profesional con todo lo que tienes que revisar en tu box, cuándo, y cómo detectar problemas antes de que te exploten en la cara.
+                </p>
+                
+                <form class="gift-form" id="leadForm">
+                    <input type="email" name="email" placeholder="tu@email.com" required>
+                    <input type="text" name="box_name" placeholder="Nombre de tu box" required>
+                    <button type="submit">Descargar guía gratuita</button>
+                    <p class="gift-privacy">
+                        Te enviaremos la guía por email. Puede que algún consejo extra de vez en cuando. Nada de spam. Puedes darte de baja cuando quieras.
+                    </p>
+                </form>
+            </div>
+            
+            <div class="gift-visual">
+                <div class="checklist-card">
+                    <div class="checklist-card-header">
+                        📋 Checklist de ejemplo
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check1">
+                        <label for="check1">Limpiar raíles del RowErg y lubricar cadena</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check2">
+                        <label for="check2">Revisar tornillería de rigs y estructuras</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check3">
+                        <label for="check3">Cepillar barras olímpicas y aplicar aceite</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check4">
+                        <label for="check4">Comprobar estado de plataformas y suelos</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="check5">
+                        <label for="check5">Inspeccionar kettlebells por grietas o desgaste</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="trust-content">
+            <div class="section-number" style="color: var(--amber);">05 — Por qué nosotros</div>
+            <h2 class="manifesto-title" style="margin-bottom: 0;">
+                Lo que nos hace <em>diferentes.</em>
+            </h2>
+            
+            <div class="trust-grid">
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">🔧</div>
+                    <h3 class="trust-cell-title">Somos atletas</h3>
+                    <p class="trust-cell-desc">
+                        Entrenamos en boxes como el tuyo. Sabemos lo que es un Fran con un erg que no responde.
+                    </p>
+                </div>
+                
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">📅</div>
+                    <h3 class="trust-cell-title">Calendario propio</h3>
+                    <p class="trust-cell-desc">
+                        Llevamos nosotros el control. Te avisamos cuando toca revisión. Tú no tienes que acordarte de nada.
+                    </p>
+                </div>
+                
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">🚦</div>
+                    <h3 class="trust-cell-title">Informe semáforo</h3>
+                    <p class="trust-cell-desc">
+                        Verde, ámbar, rojo. Sabes exactamente qué está bien, qué necesita atención, y qué es urgente.
+                    </p>
+                </div>
+                
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">💬</div>
+                    <h3 class="trust-cell-title">Sin corporate</h3>
+                    <p class="trust-cell-desc">
+                        Hablamos claro. Sin jerga técnica innecesaria. Sin presupuestos inflados. Sin presión.
+                    </p>
+                </div>
+                
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">📍</div>
+                    <h3 class="trust-cell-title">Local</h3>
+                    <p class="trust-cell-desc">
+                        Málaga y alrededores. Llegamos cuando nos necesitas. No esperamos semanas a un técnico de fuera.
+                    </p>
+                </div>
+                
+                <div class="trust-cell">
+                    <div class="trust-cell-icon">🤝</div>
+                    <h3 class="trust-cell-title">Reputación primero</h3>
+                    <p class="trust-cell-desc">
+                        Málaga es pequeña. El CrossFit, más. Cada trabajo es nuestra carta de presentación.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">ERG<span class="gear">O</span> BOX</div>
+                <p class="footer-tagline">
+                    "Tus coaches entrenan. Del equipo nos encargamos nosotros."
+                </p>
+                <p style="font-family: var(--sans); font-size: 14px; color: var(--steel); opacity: 0.7;">
+                    Mantenimiento especializado de boxes de CrossFit y entrenamiento funcional en Málaga.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:hola@ergobox.es">hola@ergobox.es</a></li>
+                    <li><a href="tel:+34600000000">600 000 000</a></li>
+                    <li><a href="https://instagram.com/ergobox.es" target="_blank">@ergobox.es</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Zona de servicio</h4>
+                <ul>
+                    <li><a href="#">Málaga capital</a></li>
+                    <li><a href="#">Costa del Sol</a></li>
+                    <li><a href="#">Interior provincia</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div>© 2026 ERGO BOX · Málaga</div>
+            <div>Hecho con 🖤 por atletas, para atletas</div>
+        </div>
+    </footer>
+
+    <script>
+        // Lead form handling
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.email.value;
+            const boxName = this.box_name.value;
+            
+            // TODO: Integrate with Formspree or similar
+            console.log('Lead captured:', { email, boxName });
+            
+            // Show success state
+            this.innerHTML = `
+                <div style="padding: 32px; background: rgba(245,241,232,0.1); border-radius: 8px; text-align: center; color: var(--paper);">
+                    <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
+                    <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 8px;">
+                        ¡Guía en camino!
+                    </div>
+                    <div style="font-family: var(--sans); font-size: 14px; opacity: 0.8;">
+                        Revisa tu email. Te la hemos enviado a ${email}
+                    </div>
+                </div>
+            `;
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
