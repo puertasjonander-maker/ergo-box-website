@@ -1630,7 +1630,7 @@
                     Un checklist profesional con todo lo que tienes que revisar en tu box, cuándo, y cómo detectar problemas antes de que te exploten en la cara.
                 </p>
                 
-                <form class="gift-form" id="leadForm" action="https://formspree.io/f/TU-FORM-ID" method="POST">
+                <form class="gift-form" id="leadForm" action="https://formspree.io/f/xqerpwvv" method="POST">
                     <input type="hidden" name="_subject" value="🎁 Nueva descarga de guía — ERGO BOX">
                     <input type="email" name="email" placeholder="tu@email.com" required aria-label="Tu email">
                     <input type="text" name="box_name" placeholder="Nombre de tu box" required aria-label="Nombre de tu box">
@@ -1786,15 +1786,14 @@
             btn.textContent = 'Enviando…';
 
             try {
-                // If Formspree ID not configured yet, skip remote capture gracefully
+                // Send lead to Formspree (email + box name -> hola@ergobox.es)
                 const action = form.getAttribute('action');
-                if (action && !action.includes('TU-FORM-ID')) {
-                    await fetch(action, {
-                        method: 'POST',
-                        headers: { 'Accept': 'application/json' },
-                        body: new FormData(form)
-                    });
-                }
+                const resp = await fetch(action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+                if (!resp.ok) console.warn('Formspree responded', resp.status);
             } catch (err) { console.warn('Lead capture failed, continuing to download:', err); }
 
             // Auto-download the PDF guide
