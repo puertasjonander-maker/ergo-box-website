@@ -39,11 +39,100 @@
     }
     </script>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <!-- Self-hosted: one origin, no third-party font request, and no Google
+         Fonts hotlink on an EU business site. Only the `latin` files are
+         fetched for Spanish copy; `latin-ext` stays unrequested. -->
+    <link rel="preload" href="assets/fonts/piazzolla-latin-100_900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/archivo-latin-100_900.woff2" as="font" type="font/woff2" crossorigin>
+
     <style>
+        /* ============ TYPE ============
+           Piazzolla  — editorial voice: display headlines and long-form prose.
+                        Variable 100–900 with a real italic, drawn with Spanish
+                        in mind. Optical sizing is left on auto.
+           Archivo    — UI and utility: controls, nav, lists, short descriptions.
+           DM Mono    — spec labels only: section numbers, measurements, price.
+        */
+        @font-face {
+            font-family: 'Piazzolla';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/piazzolla-latin-100_900.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Piazzolla';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/piazzolla-latin-ext-100_900.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Piazzolla';
+            font-style: italic;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/piazzolla-italic-latin-100_900.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Piazzolla';
+            font-style: italic;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/piazzolla-italic-latin-ext-100_900.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'Archivo';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/archivo-latin-100_900.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'Archivo';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('assets/fonts/archivo-latin-ext-100_900.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'DM Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('assets/fonts/dmmono-latin-400.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'DM Mono';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('assets/fonts/dmmono-latin-ext-400.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
+        @font-face {
+            font-family: 'DM Mono';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url('assets/fonts/dmmono-latin-500.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+            font-family: 'DM Mono';
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+            src: url('assets/fonts/dmmono-latin-ext-500.woff2') format('woff2');
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+        }
         :root {
             --ink: #0f0e0c;
             --paper: #f5f1e8;
@@ -59,10 +148,17 @@
             --on-ink: rgba(245, 241, 232, 0.78);
             --on-ink-quiet: rgba(245, 241, 232, 0.65);
             
-            --serif: 'Fraunces', Georgia, serif;
-            --sans: 'Inter', system-ui, sans-serif;
-            --mono: 'JetBrains Mono', monospace;
+            /* Named by role, not by classification. */
+            --font-editorial: 'Piazzolla', 'Iowan Old Style', Georgia, serif;
+            --font-ui: 'Archivo', system-ui, -apple-system, sans-serif;
+            --font-spec: 'DM Mono', ui-monospace, SFMono-Regular, monospace;
+
+            /* Display weight. Piazzolla's 900 is heavier than Fraunces' was at
+               the same nominal value; 800 holds the same optical presence. */
+            --w-display: 800;
         }
+
+        body { font-optical-sizing: auto; }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -95,7 +191,7 @@
             padding: 12px 20px;
             background: var(--ink);
             color: var(--paper);
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
@@ -122,7 +218,7 @@
         }
 
         body {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             color: var(--ink);
             background: var(--paper);
             line-height: 1.6;
@@ -164,8 +260,8 @@
         }
 
         .nav-logo {
-            font-family: var(--serif);
-            font-weight: 900;
+            font-family: var(--font-editorial);
+            font-weight: var(--w-display);
             font-size: 20px;
             letter-spacing: -0.5px;
             text-decoration: none;
@@ -194,7 +290,7 @@
             align-items: center;
             min-height: 32px;
             padding: 4px 2px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             font-weight: 500;
             color: var(--steel);
@@ -205,7 +301,7 @@
         .nav-links a:hover { color: var(--ink); }
 
         .nav-cta {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             font-weight: 600;
             padding: 11px 20px;
@@ -246,7 +342,7 @@
         }
 
         .hero-eyebrow {
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
@@ -266,11 +362,11 @@
         }
 
         .hero h1 {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(42px, 5.2vw, 72px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 0.98;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.015em;
             margin-bottom: 24px;
         }
 
@@ -296,9 +392,9 @@
         }
 
         .hero-lede {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(17px, 1.4vw, 20px);
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.55;
             color: var(--steel);
             max-width: 460px;
@@ -317,7 +413,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px 18px;
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 1.2px;
@@ -344,7 +440,7 @@
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             font-weight: 600;
             padding: 18px 32px;
@@ -376,7 +472,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             font-weight: 500;
             color: var(--ink);
@@ -415,11 +511,12 @@
             bottom: 24px;
             left: 24px;
             right: 184px; /* leave room for badge */
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+            font-family: var(--font-spec);
+            font-size: 12px;
+            font-weight: 400;
+            /* Sentence case: 55 characters of tracked caps is a label doing a
+               sentence's job. */
+            letter-spacing: 0.4px;
             color: var(--paper);
             background: rgba(15, 14, 12, 0.82);
             backdrop-filter: blur(8px);
@@ -443,7 +540,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             transform: rotate(8deg);
             box-shadow: 0 12px 40px rgba(217, 123, 41, 0.45);
             z-index: 5;
@@ -460,7 +557,7 @@
 
         .free-badge .badge-main {
             font-size: 38px;
-            font-weight: 900;
+            font-weight: var(--w-display);
             color: var(--ink);
             line-height: 1;
             margin: 4px 0;
@@ -489,7 +586,7 @@
         }
 
         .section-number {
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
@@ -499,11 +596,11 @@
         }
 
         .manifesto-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(36px, 4.5vw, 64px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1.05;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.012em;
         }
 
         .manifesto-title em {
@@ -513,9 +610,9 @@
         }
 
         .manifesto-content {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 22px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.7;
             color: var(--steel);
             max-width: 66ch;
@@ -540,18 +637,18 @@
         }
 
         .pull-quote blockquote {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(28px, 4vw, 44px);
             font-weight: 400;
             font-style: italic;
             line-height: 1.3;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.005em;
             max-width: 900px;
             margin: 0 auto 24px;
         }
 
         .pull-quote cite {
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 13px;
             font-style: normal;
             font-weight: 500;
@@ -580,18 +677,18 @@
         }
 
         .problem-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(36px, 4.5vw, 64px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1.05;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.012em;
             color: var(--paper);
         }
 
         .problem-subtitle {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
-            font-weight: 300;
+            font-weight: 450;
             font-style: italic;
             color: var(--on-ink);
             margin-top: 24px;
@@ -621,16 +718,16 @@
         }
 
         .problem-num {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 64px;
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1;
             color: var(--amber);
             opacity: 0.75;
         }
 
         .problem-name {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 28px;
             font-weight: 600;
             line-height: 1.2;
@@ -638,7 +735,7 @@
         }
 
         .problem-desc {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 16px;
             line-height: 1.7;
             color: var(--on-ink);
@@ -686,11 +783,11 @@
         }
 
         .offer-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(40px, 5vw, 72px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 0.95;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.015em;
             margin-bottom: 32px;
         }
 
@@ -701,9 +798,9 @@
         }
 
         .offer-desc {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.6;
             color: var(--steel);
             margin-bottom: 40px;
@@ -723,7 +820,7 @@
             grid-template-columns: auto minmax(0, 1fr);
             align-items: start;
             gap: 16px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 16px;
             line-height: 1.5;
             color: var(--steel);
@@ -731,7 +828,7 @@
 
         .offer-feature::before {
             content: '—';
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             color: var(--amber-text);
             font-weight: 600;
         }
@@ -767,7 +864,7 @@
             position: absolute;
             top: 24px;
             left: 24px;
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 11px;
             font-weight: 500;
             text-transform: uppercase;
@@ -793,7 +890,7 @@
         }
 
         .price-tag .price-old {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 18px;
             font-weight: 400;
             text-decoration: line-through;
@@ -801,16 +898,16 @@
         }
 
         .price-tag .price-new {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 36px;
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1;
             color: var(--amber);
         }
 
         .price-tag .price-note {
-            font-family: var(--mono);
-            font-size: 10px;
+            font-family: var(--font-spec);
+            font-size: 11px;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1.2px;
@@ -837,11 +934,11 @@
         }
 
         .booking-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(40px, 5vw, 64px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.012em;
             margin-bottom: 24px;
         }
 
@@ -852,9 +949,9 @@
         }
 
         .booking-desc {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.6;
             color: var(--steel);
             margin-bottom: 48px;
@@ -879,7 +976,7 @@
         }
 
         .booking-step-num {
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
@@ -889,7 +986,7 @@
         }
 
         .booking-step-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
             font-weight: 600;
             line-height: 1.3;
@@ -897,7 +994,7 @@
         }
 
         .booking-step-desc {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             line-height: 1.6;
             color: var(--steel);
@@ -911,7 +1008,7 @@
             justify-content: center;
             gap: 10px 14px;
             margin-bottom: 24px;
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 1.2px;
@@ -965,7 +1062,7 @@
 
         .cal-skeleton::after {
             content: 'Cargando el calendario…';
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             letter-spacing: 1.2px;
             text-transform: uppercase;
@@ -1022,7 +1119,7 @@
         }
 
         .booking-fallback p {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             color: var(--steel);
             margin-bottom: 16px;
@@ -1041,7 +1138,7 @@
             gap: 10px;
             min-height: 48px;
             padding: 12px 22px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             font-weight: 600;
             color: var(--ink);
@@ -1061,7 +1158,7 @@
 
         .booking-note {
             margin-top: 20px;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             line-height: 1.6;
             color: var(--steel);
@@ -1106,7 +1203,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
@@ -1116,11 +1213,11 @@
         }
 
         .gift-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(36px, 4.5vw, 56px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1.05;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.012em;
             color: var(--paper);
             margin-bottom: 24px;
         }
@@ -1132,9 +1229,9 @@
         }
 
         .gift-desc {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
-            font-weight: 300;
+            font-weight: 450;
             line-height: 1.6;
             color: var(--paper);
             opacity: 0.9;
@@ -1155,7 +1252,7 @@
         }
 
         .gift-field label {
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 1.4px;
@@ -1166,7 +1263,7 @@
         /* Translucent fields on dark green could not carry a passing placeholder
            contrast at any usable opacity. A real, light field can. */
         .gift-form input {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 16px;
             width: 100%;
             padding: 16px 20px;
@@ -1201,7 +1298,7 @@
             border-radius: 4px;
             border: 1px solid var(--amber-soft);
             background: rgba(15, 14, 12, 0.35);
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             line-height: 1.5;
             color: var(--paper);
@@ -1223,14 +1320,14 @@
         .gift-success svg { color: var(--amber-soft); }
 
         .gift-success-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
             font-weight: 600;
             margin: 12px 0 8px;
         }
 
         .gift-success-body {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             line-height: 1.6;
             color: var(--paper);
@@ -1242,7 +1339,7 @@
         }
 
         .gift-form button {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             font-weight: 600;
             padding: 18px 32px;
@@ -1269,7 +1366,7 @@
         }
 
         .gift-privacy {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 13px;
             color: rgba(245, 241, 232, 0.82);
             line-height: 1.5;
@@ -1293,9 +1390,9 @@
         }
 
         .checklist-card-header {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 24px;
-            font-weight: 900;
+            font-weight: var(--w-display);
             color: var(--ink);
             margin-bottom: 24px;
             padding-bottom: 16px;
@@ -1323,7 +1420,7 @@
         }
 
         .checklist-item label {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             line-height: 1.5;
             color: var(--steel);
@@ -1349,11 +1446,11 @@
         .trust .section-number { color: var(--amber-text); }
 
         .trust-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: clamp(36px, 4.5vw, 64px);
-            font-weight: 900;
+            font-weight: var(--w-display);
             line-height: 1.05;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.012em;
         }
 
         .trust-title em {
@@ -1394,7 +1491,7 @@
         }
 
         .trust-cell-title {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 20px;
             font-weight: 600;
             line-height: 1.3;
@@ -1402,7 +1499,7 @@
         }
 
         .trust-cell-desc {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             line-height: 1.6;
             color: var(--steel);
@@ -1425,9 +1522,9 @@
         }
 
         .footer-logo {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 32px;
-            font-weight: 900;
+            font-weight: var(--w-display);
             color: var(--paper);
             margin-bottom: 16px;
         }
@@ -1437,7 +1534,7 @@
         }
 
         .footer-tagline {
-            font-family: var(--serif);
+            font-family: var(--font-editorial);
             font-size: 16px;
             font-style: italic;
             color: var(--on-ink);
@@ -1445,7 +1542,7 @@
         }
 
         .footer-blurb {
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 14px;
             line-height: 1.6;
             color: var(--on-ink-quiet);
@@ -1454,15 +1551,15 @@
 
         .footer-areas {
             list-style: none;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             color: var(--on-ink);
         }
 
         .footer-areas li { margin-bottom: 12px; }
 
-        .footer-section h4 {
-            font-family: var(--mono);
+        .footer-section h3 {
+            font-family: var(--font-spec);
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
@@ -1487,7 +1584,7 @@
             gap: 10px;
             min-height: 44px;
             padding: 4px 0;
-            font-family: var(--sans);
+            font-family: var(--font-ui);
             font-size: 15px;
             color: var(--on-ink);
             text-decoration: none;
@@ -1511,7 +1608,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: var(--mono);
+            font-family: var(--font-spec);
             font-size: 12px;
             color: var(--on-ink-quiet);
         }
@@ -1530,9 +1627,13 @@
                 top: auto;
                 bottom: 72px;
                 right: 20px;
-                width: 128px;
-                height: 128px;
+                width: 152px;
+                height: 152px;
             }
+
+            /* Piazzolla 800 sets wider than the old face at the same size —
+               "GRATIS" broke out of the disc between 640 and 1024. */
+            .free-badge .badge-main { font-size: 32px; }
 
             .hero-image {
                 min-height: 420px;
@@ -1657,14 +1758,14 @@
 
             /* === FREE BADGE === */
             .free-badge {
-                width: 104px;
-                height: 104px;
+                width: 116px;
+                height: 116px;
                 right: 14px;
                 bottom: 64px;
             }
-            
+
             .free-badge .badge-main {
-                font-size: 26px;
+                font-size: 25px;
             }
 
             .free-badge .badge-top,
@@ -2268,7 +2369,7 @@
             </div>
 
             <div class="footer-section">
-                <h4>Contacto</h4>
+                <h3>Contacto</h3>
                 <ul>
                     <li><a href="mailto:hola@ergobox.es">
                         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -2298,7 +2399,7 @@
             </div>
 
             <div class="footer-section">
-                <h4>Zona de servicio</h4>
+                <h3>Zona de servicio</h3>
                 <!-- These were <a href="#">: three visible links that went nowhere
                      and threw on click. They are facts, not destinations. -->
                 <ul class="footer-areas">
