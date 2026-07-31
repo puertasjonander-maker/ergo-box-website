@@ -11,12 +11,15 @@
     <meta property="og:url" content="https://ergobox.es/">
     <meta property="og:title" content="ERGO BOX — El mantenimiento que tu box merece · Málaga">
     <meta property="og:description" content="Primera revisión de un erg, gratis. Mantenimiento especializado de boxes de CrossFit en Málaga.">
-    <meta property="og:image" content="https://ergobox.es/assets/hero-barbell.jpg">
+    <meta property="og:image" content="https://ergobox.es/assets/og-ergobox.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Manos enguantadas engrasando la cadena de un RowErg en un box de CrossFit">
     <meta property="og:locale" content="es_ES">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ERGO BOX — Mantenimiento de boxes · Málaga">
     <meta name="twitter:description" content="Primera revisión de un erg, gratis. Tus coaches entrenan, del equipo nos encargamos nosotros.">
-    <meta name="twitter:image" content="https://ergobox.es/assets/hero-barbell.jpg">
+    <meta name="twitter:image" content="https://ergobox.es/assets/og-ergobox.jpg">
     <link rel="canonical" href="https://ergobox.es/">
     
     <!-- LocalBusiness Schema -->
@@ -30,7 +33,8 @@
       "email": "hola@ergobox.es",
       "areaServed": {"@type": "City", "name": "Málaga"},
       "priceRange": "€€",
-      "image": "https://ergobox.es/assets/hero-barbell.jpg",
+      "image": "https://ergobox.es/assets/og-ergobox.jpg",
+      "telephone": "+34634440253",
       "sameAs": ["https://instagram.com/ergobox.es"]
     }
     </script>
@@ -44,12 +48,16 @@
             --ink: #0f0e0c;
             --paper: #f5f1e8;
             --paper-warm: #ede6d8;
-            --amber: #d97b29;
+            --amber: #d97b29;        /* fills, rules, dots — never small text on light */
             --amber-deep: #b25a0e;
+            --amber-text: #9c4f08;   /* amber as text on paper/paper-warm/white — AA */
+            --amber-soft: #f6c088;   /* amber as text on ink/green — AA */
             --steel: #4a4a48;
             --line: #d4cdc0;
             --green: #2a5d3a;
             --red: #a83232;
+            --on-ink: rgba(245, 241, 232, 0.78);
+            --on-ink-quiet: rgba(245, 241, 232, 0.65);
             
             --serif: 'Fraunces', Georgia, serif;
             --sans: 'Inter', system-ui, sans-serif;
@@ -60,6 +68,57 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        section[id] { scroll-margin-top: 96px; }
+
+        /* Keyboard focus — one visible ring everywhere, on light and dark alike */
+        :focus-visible {
+            outline: 3px solid var(--amber-deep);
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        .problem :focus-visible,
+        .gift :focus-visible,
+        footer :focus-visible,
+        .mobile-sticky-cta :focus-visible {
+            outline-color: var(--amber-soft);
+        }
+
+        .skip-link {
+            position: absolute;
+            left: 16px;
+            top: -100px;
+            z-index: 300;
+            padding: 12px 20px;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: top 0.2s;
+        }
+
+        .skip-link:focus { top: 16px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .btn-primary:hover,
+            .gift-form button:hover,
+            .nav-cta:hover,
+            .checklist-card:hover,
+            .problem-item:hover { transform: none; }
         }
 
         body {
@@ -91,8 +150,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, var(--paper) 0%, transparent 100%);
-            backdrop-filter: blur(8px);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        /* Past the hero the bar becomes a real surface instead of smearing a
+           cream veil over the dark sections it happens to be floating above. */
+        nav.is-scrolled {
+            background: var(--paper);
+            border-bottom-color: var(--line);
+            box-shadow: 0 1px 24px rgba(15, 14, 12, 0.06);
         }
 
         .nav-logo {
@@ -106,7 +174,7 @@
 
         .nav-logo .gear {
             display: inline-block;
-            color: var(--amber);
+            color: var(--amber-text);
             animation: gear-spin 12s linear infinite;
         }
 
@@ -122,6 +190,10 @@
         }
 
         .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 32px;
+            padding: 4px 2px;
             font-family: var(--sans);
             font-size: 14px;
             font-weight: 500;
@@ -179,7 +251,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--amber);
+            color: var(--amber-text);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -205,7 +277,7 @@
         .hero h1 em {
             font-style: italic;
             font-weight: 400;
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         .hero h1 .strikethrough {
@@ -287,6 +359,7 @@
 
         .btn-primary:hover {
             background: var(--amber);
+            color: var(--ink);
             transform: translateY(-2px);
             box-shadow: 0 12px 32px rgba(217, 123, 41, 0.3);
         }
@@ -321,10 +394,14 @@
             position: relative;
             overflow: hidden;
             background: var(--paper-warm);
-            min-height: 520px;
         }
 
+        /* The photo is portrait (576x1024). Left in flow it drives the grid row
+           height and pushes the hero CTA below the fold on a 900px laptop, so it
+           is taken out of flow and the row is sized by the copy column instead. */
         .hero-image img {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -357,8 +434,9 @@
             top: auto;
             bottom: 88px;
             right: 24px;
-            width: 148px;
-            height: 148px;
+            width: 168px;
+            height: 168px;
+            padding: 0 12px;
             background: var(--amber);
             border-radius: 50%;
             display: flex;
@@ -369,12 +447,7 @@
             transform: rotate(8deg);
             box-shadow: 0 12px 40px rgba(217, 123, 41, 0.45);
             z-index: 5;
-            transition: transform 0.3s;
             pointer-events: none;
-        }
-
-        .free-badge:hover {
-            transform: rotate(4deg) scale(1.04);
         }
 
         .free-badge .badge-top {
@@ -382,14 +455,13 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--paper);
-            opacity: 0.9;
+            color: var(--ink);
         }
 
         .free-badge .badge-main {
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 900;
-            color: var(--paper);
+            color: var(--ink);
             line-height: 1;
             margin: 4px 0;
         }
@@ -399,8 +471,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--paper);
-            opacity: 0.9;
+            color: var(--ink);
         }
 
         /* ============ MANIFESTO SECTION ============ */
@@ -438,7 +509,7 @@
         .manifesto-title em {
             font-style: italic;
             font-weight: 400;
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         .manifesto-content {
@@ -447,6 +518,7 @@
             font-weight: 300;
             line-height: 1.7;
             color: var(--steel);
+            max-width: 66ch;
         }
 
         .manifesto-content p + p {
@@ -485,7 +557,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         /* ============ THE PROBLEM - Editorial List ============ */
@@ -521,8 +593,7 @@
             font-size: 20px;
             font-weight: 300;
             font-style: italic;
-            color: var(--paper);
-            opacity: 0.7;
+            color: var(--on-ink);
             margin-top: 24px;
         }
 
@@ -555,7 +626,7 @@
             font-weight: 900;
             line-height: 1;
             color: var(--amber);
-            opacity: 0.4;
+            opacity: 0.75;
         }
 
         .problem-name {
@@ -570,8 +641,7 @@
             font-family: var(--sans);
             font-size: 16px;
             line-height: 1.7;
-            color: var(--paper);
-            opacity: 0.7;
+            color: var(--on-ink);
         }
 
         .problem-desc strong {
@@ -587,16 +657,16 @@
             overflow: hidden;
         }
 
+        /* Was a 103 KB photo painted at opacity 0.1, which also cut a hard
+           vertical seam down the middle of the section. Same warmth, no bytes,
+           no edge. */
         .offer::before {
             content: '';
             position: absolute;
             top: 0; right: 0;
-            width: 60%;
+            width: 70%;
             height: 100%;
-            background-image: url('assets/offer-bg.jpg');
-            background-size: cover;
-            background-position: 70% center;
-            opacity: 0.1;
+            background: radial-gradient(120% 90% at 85% 20%, rgba(217, 123, 41, 0.10) 0%, rgba(217, 123, 41, 0) 65%);
             pointer-events: none;
         }
 
@@ -612,7 +682,7 @@
         }
 
         .offer-left .section-number {
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         .offer-title {
@@ -627,7 +697,7 @@
         .offer-title em {
             font-style: italic;
             font-weight: 400;
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         .offer-desc {
@@ -646,9 +716,12 @@
             margin-bottom: 48px;
         }
 
+        /* Grid, not flex: as a flex container the <strong> and the text after it
+           became two separate flex items and wrapped mid-phrase. */
         .offer-feature {
-            display: flex;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: start;
             gap: 16px;
             font-family: var(--sans);
             font-size: 16px;
@@ -659,9 +732,8 @@
         .offer-feature::before {
             content: '—';
             font-family: var(--serif);
-            color: var(--amber);
+            color: var(--amber-text);
             font-weight: 600;
-            flex-shrink: 0;
         }
 
         .offer-feature strong {
@@ -700,16 +772,19 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--paper);
+            color: var(--ink);
             background: var(--amber);
             padding: 8px 14px;
             border-radius: 2px;
         }
 
+        /* Anchored to .offer-right, not to the clipping image wrapper — inside it
+           the mobile `position: static` fallback was cropped out of existence. */
         .price-tag {
             position: absolute;
             bottom: 24px;
             right: 24px;
+            z-index: 3;
             background: var(--ink);
             color: var(--paper);
             padding: 20px 28px;
@@ -733,6 +808,16 @@
             color: var(--amber);
         }
 
+        .price-tag .price-note {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--on-ink-quiet);
+            margin-top: 6px;
+        }
+
         /* ============ BOOKING SECTION ============ */
         .booking {
             padding: 120px 80px;
@@ -746,7 +831,7 @@
         }
 
         .booking .section-number {
-            color: var(--amber);
+            color: var(--amber-text);
             justify-content: center;
             display: flex;
         }
@@ -763,7 +848,7 @@
         .booking-title em {
             font-style: italic;
             font-weight: 400;
-            color: var(--amber);
+            color: var(--amber-text);
         }
 
         .booking-desc {
@@ -799,7 +884,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--amber);
+            color: var(--amber-text);
             margin-bottom: 12px;
         }
 
@@ -818,36 +903,172 @@
             color: var(--steel);
         }
 
-        .cal-embed-placeholder {
-            background: white;
-            border: 2px dashed var(--line);
+        /* What is actually being booked, restated at the point of commitment —
+           the calendar embed hides the event details. */
+        .booking-recap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 14px;
+            margin-bottom: 24px;
+            font-family: var(--mono);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--steel);
+        }
+
+        .booking-recap span {
+            padding: 8px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        .booking-recap span strong {
+            color: var(--amber-text);
+            font-weight: 600;
+        }
+
+        .cal-embed-wrapper {
+            position: relative;
+        }
+
+        .cal-embed-frame {
+            position: relative;
+            min-height: 640px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .cal-embed-frame iframe {
+            position: relative;
+            z-index: 2;
+            display: block;
+            border: 0;
+        }
+
+        /* Skeleton behind the iframe: the visitor sees structure, not 640px of
+           white, while a third-party frame negotiates. */
+        .cal-skeleton {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 40px;
+        }
+
+        .cal-skeleton::after {
+            content: 'Cargando el calendario…';
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--steel);
+        }
+
+        .cal-skeleton i {
+            display: block;
+            height: 16px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--paper-warm) 0%, var(--paper) 50%, var(--paper-warm) 100%);
+            background-size: 200% 100%;
+            animation: cal-shimmer 1.6s ease-in-out infinite;
+        }
+
+        .cal-skeleton i:nth-child(1) { width: 40%; height: 26px; }
+        .cal-skeleton i:nth-child(2) { width: 70%; }
+        .cal-skeleton i:nth-child(3) { width: 55%; }
+        .cal-skeleton i:nth-child(4) { width: 62%; }
+
+        @keyframes cal-shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+
+        /* Always-visible escape hatch. Ad blockers, corporate wifi and cal.com
+           outages all end the same way without it: a dead end at the moment of
+           highest intent. */
+        .booking-fallback {
+            margin-top: 24px;
+            padding: 24px;
+            border: 1px solid var(--line);
             border-radius: 8px;
-            padding: 80px 40px;
+            background: rgba(255, 255, 255, 0.7);
             text-align: center;
         }
 
-        .cal-embed-placeholder h3 {
-            font-family: var(--serif);
-            font-size: 24px;
+        /* Promoted when the embed never loaded — then it is the booking path. */
+        .booking-fallback.is-primary {
+            border-color: var(--amber);
+            background: #fff;
+            box-shadow: 0 8px 40px rgba(15, 14, 12, 0.1);
+        }
+
+        .booking-fallback.is-primary .btn-ghost {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .booking-fallback.is-primary .btn-ghost:hover {
+            background: var(--amber);
+            color: var(--ink);
+            border-color: var(--amber);
+        }
+
+        .booking-fallback p {
+            font-family: var(--sans);
+            font-size: 15px;
+            color: var(--steel);
             margin-bottom: 16px;
         }
 
-        .cal-embed-placeholder p {
-            font-family: var(--sans);
-            color: var(--steel);
-            margin-bottom: 24px;
+        .booking-fallback-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
         }
 
-        .cal-embed-placeholder code {
-            display: block;
-            font-family: var(--mono);
-            font-size: 13px;
-            background: var(--paper-warm);
-            padding: 20px;
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 48px;
+            padding: 12px 22px;
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            text-decoration: none;
+            background: transparent;
+            border: 2px solid var(--ink);
             border-radius: 4px;
-            text-align: left;
-            overflow-x: auto;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .btn-ghost svg { flex-shrink: 0; }
+
+        .booking-note {
+            margin-top: 20px;
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.6;
             color: var(--steel);
+            text-align: center;
+            max-width: 62ch;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ============ LEAD MAGNET - The Gift ============ */
@@ -890,7 +1111,7 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: var(--amber);
+            color: var(--amber-soft);
             margin-bottom: 24px;
         }
 
@@ -907,7 +1128,7 @@
         .gift-title em {
             font-style: italic;
             font-weight: 400;
-            color: var(--amber);
+            color: var(--amber-soft);
         }
 
         .gift-desc {
@@ -927,26 +1148,97 @@
             max-width: 400px;
         }
 
+        .gift-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gift-field label {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--amber-soft);
+        }
+
+        /* Translucent fields on dark green could not carry a passing placeholder
+           contrast at any usable opacity. A real, light field can. */
         .gift-form input {
             font-family: var(--sans);
             font-size: 16px;
+            width: 100%;
             padding: 16px 20px;
             border: 2px solid transparent;
             border-radius: 4px;
-            background: rgba(245, 241, 232, 0.1);
-            color: var(--paper);
-            backdrop-filter: blur(8px);
-            transition: all 0.2s;
+            background: var(--paper);
+            color: var(--ink);
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
 
         .gift-form input::placeholder {
-            color: rgba(245, 241, 232, 0.5);
+            color: #5f5f5c;
         }
 
         .gift-form input:focus {
-            outline: none;
-            background: rgba(245, 241, 232, 0.15);
-            border-color: var(--amber);
+            border-color: var(--amber-deep);
+            box-shadow: 0 0 0 3px rgba(217, 123, 41, 0.35);
+        }
+
+        .gift-form input[aria-invalid="true"] {
+            border-color: #ffb3b3;
+        }
+
+        /* `display: flex` outranks the UA's [hidden] rule, so it needs saying. */
+        .gift-error[hidden] { display: none; }
+
+        .gift-error {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--amber-soft);
+            background: rgba(15, 14, 12, 0.35);
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--paper);
+        }
+
+        .gift-error a {
+            color: var(--amber-soft);
+            text-decoration: underline;
+        }
+
+        .gift-success {
+            padding: 32px;
+            border-radius: 8px;
+            background: rgba(15, 14, 12, 0.3);
+            text-align: center;
+            color: var(--paper);
+        }
+
+        .gift-success svg { color: var(--amber-soft); }
+
+        .gift-success-title {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 600;
+            margin: 12px 0 8px;
+        }
+
+        .gift-success-body {
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--paper);
+        }
+
+        .gift-success-body a {
+            color: var(--amber-soft);
+            text-decoration: underline;
         }
 
         .gift-form button {
@@ -964,15 +1256,22 @@
 
         .gift-form button:hover {
             background: var(--amber);
-            color: var(--paper);
+            color: var(--ink);
             transform: translateY(-2px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-form button:disabled {
+            opacity: 0.65;
+            cursor: progress;
+            transform: none;
+            box-shadow: none;
         }
 
         .gift-privacy {
             font-family: var(--sans);
             font-size: 13px;
-            color: rgba(245, 241, 232, 0.6);
+            color: rgba(245, 241, 232, 0.82);
             line-height: 1.5;
         }
 
@@ -1016,9 +1315,10 @@
         }
 
         .checklist-item input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-top: 2px;
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            margin-top: 1px;
             accent-color: var(--green);
         }
 
@@ -1046,6 +1346,22 @@
             margin: 0 auto;
         }
 
+        .trust .section-number { color: var(--amber-text); }
+
+        .trust-title {
+            font-family: var(--serif);
+            font-size: clamp(36px, 4.5vw, 64px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .trust-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber-text);
+        }
+
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1070,8 +1386,11 @@
         }
 
         .trust-cell-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
+            display: block;
+            width: 32px;
+            height: 32px;
+            margin-bottom: 20px;
+            color: var(--amber-text);
         }
 
         .trust-cell-title {
@@ -1121,10 +1440,26 @@
             font-family: var(--serif);
             font-size: 16px;
             font-style: italic;
-            color: var(--steel);
-            opacity: 0.8;
+            color: var(--on-ink);
             margin-bottom: 24px;
         }
+
+        .footer-blurb {
+            font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--on-ink-quiet);
+            max-width: 46ch;
+        }
+
+        .footer-areas {
+            list-style: none;
+            font-family: var(--sans);
+            font-size: 15px;
+            color: var(--on-ink);
+        }
+
+        .footer-areas li { margin-bottom: 12px; }
 
         .footer-section h4 {
             font-family: var(--mono);
@@ -1141,21 +1476,31 @@
         }
 
         .footer-section li {
-            margin-bottom: 12px;
+            margin-bottom: 4px;
         }
 
+        /* 18px link rows failed WCAG 2.2 target size (24x24) and were the only
+           route to the phone and WhatsApp. Padded to a real 44px row. */
         .footer-section a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 4px 0;
             font-family: var(--sans);
             font-size: 15px;
-            color: var(--paper);
-            opacity: 0.7;
+            color: var(--on-ink);
             text-decoration: none;
-            transition: opacity 0.2s;
+            transition: color 0.2s;
+        }
+
+        .footer-section a svg {
+            flex-shrink: 0;
+            color: var(--amber-soft);
         }
 
         .footer-section a:hover {
-            opacity: 1;
-            color: var(--amber);
+            color: var(--amber-soft);
         }
 
         .footer-bottom {
@@ -1168,7 +1513,7 @@
             align-items: center;
             font-family: var(--mono);
             font-size: 12px;
-            color: var(--steel);
+            color: var(--on-ink-quiet);
         }
 
         /* ============ RESPONSIVE ============ */
@@ -1273,9 +1618,9 @@
                 padding-bottom: 40px;
             }
             
-            .hero h1, .hero-title {
-                font-size: clamp(34px, 9vw, 46px) !important;
-                line-height: 1.1 !important;
+            .hero h1 {
+                font-size: clamp(34px, 9vw, 46px);
+                line-height: 1.1;
             }
             
             .hero-image {
@@ -1290,7 +1635,6 @@
             }
             
             .hero-actions a,
-            .cta-primary, .cta-secondary,
             .btn-primary, .btn-secondary {
                 display: flex;
                 justify-content: center;
@@ -1300,7 +1644,17 @@
                 font-size: 16px;
                 text-align: center;
             }
-            
+
+            /* Full-width with only an underline, this read as a section divider
+               rather than a control. */
+            .btn-secondary {
+                border: 2px solid var(--line);
+                border-radius: 4px;
+                padding: 14px 20px;
+            }
+
+            .btn-secondary:hover { border-color: var(--amber-deep); }
+
             /* === FREE BADGE === */
             .free-badge {
                 width: 104px;
@@ -1358,8 +1712,9 @@
                 position: static;
                 margin-top: 16px;
                 display: inline-block;
+                text-align: left;
             }
-            
+
             /* === BOOKING === */
             .booking-steps {
                 gap: 20px;
@@ -1400,8 +1755,8 @@
             }
             
             .checklist-item input[type="checkbox"] {
-                width: 22px;
-                height: 22px;
+                width: 24px;
+                height: 24px;
             }
             
             /* === TRUST GRID === */
@@ -1421,8 +1776,10 @@
             }
             
             /* === STICKY MOBILE CTA === */
+            /* Held back until the hero CTA has scrolled away, so it stops
+               duplicating a button that is already on screen. */
             .mobile-sticky-cta {
-                display: block !important;
+                display: block;
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -1430,8 +1787,14 @@
                 z-index: 200;
                 padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
                 background: linear-gradient(to top, var(--ink) 85%, transparent);
+                transform: translateY(110%);
+                transition: transform 0.25s ease;
             }
-            
+
+            .mobile-sticky-cta.is-visible {
+                transform: translateY(0);
+            }
+
             .mobile-sticky-cta a {
                 display: flex;
                 justify-content: center;
@@ -1463,6 +1826,8 @@
     </style>
 </head>
 <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
     <!-- Navigation -->
     <nav>
         <a href="/" class="nav-logo">ERG<span class="gear">O</span> BOX</a>
@@ -1470,11 +1835,13 @@
             <li><a href="#manifiesto">Manifiesto</a></li>
             <li><a href="#problemas">El problema</a></li>
             <li><a href="#oferta">La oferta</a></li>
+            <li><a href="#confianza">Por qué nosotros</a></li>
             <li><a href="#regalo">El regalo</a></li>
         </ul>
         <a href="#reservar" class="nav-cta">Reservar revisión</a>
     </nav>
 
+  <main id="contenido">
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -1486,7 +1853,7 @@
             </h1>
             
             <p class="hero-lede">
-                Mantenimiento de ergs y barras para boxes de CrossFit. Hecho por alguien que entrena, no por un servicio técnico genérico. Sin corporate. Sin spam.
+                Mantenimiento de ergs (remo, bici y ski) y barras para boxes de CrossFit. Hecho por alguien que entrena, no por un servicio técnico genérico. Sin corporate. Sin spam.
             </p>
             
             <div class="hero-actions">
@@ -1507,7 +1874,9 @@
         </div>
         
         <div class="hero-image">
-            <img src="assets/hero-barbell.jpg" alt="Detalle de knurling de barra olímpica" loading="eager" fetchpriority="high" width="576" height="1024">
+            <img src="assets/hero-barbell.jpg" alt="Detalle del moleteado de una barra olímpica" loading="eager" fetchpriority="high" width="576" height="1024"
+                 srcset="assets/hero-barbell-420.jpg 420w, assets/hero-barbell.jpg 576w"
+                 sizes="(max-width: 1024px) 100vw, 46vw">
             <div class="hero-image-caption">
                 Cada barra cuenta una historia. Nosotros la escuchamos.
             </div>
@@ -1616,16 +1985,16 @@
                 
                 <div class="offer-features">
                     <div class="offer-feature">
-                        <strong>Revisión completa:</strong> cadena, raíles, monitor, ventilador, tornillería
+                        <span><strong>Revisión completa:</strong> cadena, raíles, monitor, ventilador, tornillería</span>
                     </div>
                     <div class="offer-feature">
-                        <strong>Limpieza básica:</strong> quitamos el polvo acumulado y dejamos el erg listo
+                        <span><strong>Limpieza básica:</strong> quitamos el polvo acumulado y dejamos el erg listo</span>
                     </div>
                     <div class="offer-feature">
-                        <strong>Informe de estado:</strong> sistema semáforo — verde, ámbar, rojo — con recomendaciones
+                        <span><strong>Informe de estado:</strong> sistema semáforo — verde, ámbar, rojo — con recomendaciones</span>
                     </div>
                     <div class="offer-feature">
-                        <strong>Presupuesto transparente:</strong> si hace falta algo más, te lo decimos claro y sin presión
+                        <span><strong>Presupuesto transparente:</strong> si hace falta algo más, te lo decimos claro y sin presión</span>
                     </div>
                 </div>
                 
@@ -1637,12 +2006,92 @@
             
             <div class="offer-right">
                 <div class="offer-image-wrapper">
-                    <img src="assets/offer-erg.jpg" alt="Revisión de un erg en el box" loading="lazy" width="1024" height="576">
+                    <img src="assets/offer-erg.jpg" alt="Manos enguantadas engrasando la cadena de un RowErg durante una revisión" loading="lazy" width="1024" height="576"
+                         srcset="assets/offer-erg-640.jpg 640w, assets/offer-erg.jpg 1024w"
+                         sizes="(max-width: 1024px) 100vw, 560px">
                     <div class="offer-image-tag">Revisión completa incluida</div>
-                    <div class="price-tag">
-                        <div class="price-old">60€</div>
-                        <div class="price-new">0€</div>
-                    </div>
+                </div>
+                <div class="price-tag">
+                    <div class="price-old">60€</div>
+                    <div class="price-new">0€</div>
+                    <div class="price-note">primera revisión</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section — moved ahead of the calendar: the reasons to trust us
+         have to land before we ask for a slot, not after. -->
+    <section class="trust" id="confianza">
+        <div class="trust-content">
+            <div class="section-number">04 — Por qué nosotros</div>
+            <h2 class="trust-title">
+                Lo que nos hace <em>diferentes.</em>
+            </h2>
+
+            <div class="trust-grid">
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 9v6M7 6.5v11M17 6.5v11M20 9v6M7 12h10"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Somos atletas</h3>
+                    <p class="trust-cell-desc">
+                        Entrenamos en boxes como el tuyo. Sabemos lo que es un Fran con un erg que no responde.
+                    </p>
+                </div>
+
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3.5" y="5" width="17" height="15.5" rx="2"/>
+                        <path d="M3.5 10h17M8 3v4M16 3v4"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Calendario propio</h3>
+                    <p class="trust-cell-desc">
+                        Llevamos nosotros el control. Te avisamos cuando toca revisión. Tú no tienes que acordarte de nada.
+                    </p>
+                </div>
+
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="7.5" y="2.5" width="9" height="19" rx="4.5"/>
+                        <path d="M12 7h.01M12 12h.01M12 17h.01"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Informe semáforo</h3>
+                    <p class="trust-cell-desc">
+                        Verde, ámbar, rojo. Sabes exactamente qué está bien, qué necesita atención, y qué es urgente.
+                    </p>
+                </div>
+
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-2.7-.4L4 21.5l1.6-4.4A8.2 8.2 0 0 1 3 11.5C3 6.8 7 3 12 3s9 3.8 9 8.5z"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Sin corporate</h3>
+                    <p class="trust-cell-desc">
+                        Hablamos claro. Sin jerga técnica innecesaria. Sin presupuestos inflados. Sin presión.
+                    </p>
+                </div>
+
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 21.5s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/>
+                        <circle cx="12" cy="10.5" r="2.6"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Local</h3>
+                    <p class="trust-cell-desc">
+                        Málaga y alrededores. Llegamos cuando nos necesitas. No esperamos semanas a un técnico de fuera.
+                    </p>
+                </div>
+
+                <div class="trust-cell">
+                    <svg class="trust-cell-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 2.5 20 6v6c0 4.8-3.4 8.6-8 9.5-4.6-.9-8-4.7-8-9.5V6z"/>
+                        <path d="m8.5 12 2.5 2.5 4.5-5"/>
+                    </svg>
+                    <h3 class="trust-cell-title">Reputación primero</h3>
+                    <p class="trust-cell-desc">
+                        Málaga es pequeña. El CrossFit, más. Cada trabajo es nuestra carta de presentación.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1651,17 +2100,17 @@
     <!-- Booking Section -->
     <section class="booking" id="reservar">
         <div class="booking-content">
-            <div class="section-number">04 — Reservar</div>
-            
+            <div class="section-number">05 — Reservar</div>
+
             <h2 class="booking-title">
                 Reserva tu revisión.<br>
                 <em>En tres pasos.</em>
             </h2>
-            
+
             <p class="booking-desc">
                 Eliges día y hora. Te llega un acuse al instante. Jon confirma personalmente en menos de 24 horas — y entonces sí, queda fixed.
             </p>
-            
+
             <div class="booking-steps">
                 <div class="booking-step">
                     <div class="booking-step-num">Paso 01</div>
@@ -1670,7 +2119,7 @@
                         Calendario interactivo. Ves nuestra disponibilidad en tiempo real y seleccionas el hueco que mejor te encaje.
                     </div>
                 </div>
-                
+
                 <div class="booking-step">
                     <div class="booking-step-num">Paso 02</div>
                     <div class="booking-step-title">Jon confirma</div>
@@ -1678,7 +2127,7 @@
                         Te llega el acuse al momento. Jon revisa el hueco y confirma personalmente en menos de 24 horas. Sin sorpresas.
                     </div>
                 </div>
-                
+
                 <div class="booking-step">
                     <div class="booking-step-num">Paso 03</div>
                     <div class="booking-step-title">Vamos y revisamos</div>
@@ -1687,20 +2136,49 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Cal.com Embed -->
             <div class="cal-embed-wrapper">
-                <iframe 
-                    src="https://cal.com/ergobox.es/revision-gratuita?embed=true&theme=light&hideEventTypeDetails=1" 
-                    width="100%" 
-                    height="640" 
-                    frameborder="0"
-                    title="Reserva tu revisión gratuita"
-                    loading="lazy"
-                    style="border-radius: 12px; background: #fff; box-shadow: 0 8px 40px rgba(0,0,0,0.12);"
-                ></iframe>
-                <p style="margin-top: 20px; font-size: 14px; color: var(--steel); text-align: center;">
-                    🔒 Solicitud recibida al instante. <strong>Jon confirma personalmente cada cita</strong> — recibirás el email de confirmación con la fecha definitiva en menos de 24h.
+                <div class="booking-recap">
+                    <span>1 erg</span>
+                    <span>45 min in situ</span>
+                    <span><strong>0 €</strong></span>
+                    <span>Sin compromiso</span>
+                </div>
+
+                <div class="cal-embed-frame">
+                    <div class="cal-skeleton" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i>
+                    </div>
+                    <iframe
+                        src="https://cal.com/ergobox.es/revision-gratuita?embed=true&amp;theme=light&amp;hideEventTypeDetails=1"
+                        width="100%"
+                        height="640"
+                        title="Reserva tu revisión gratuita"
+                        loading="lazy"
+                    ></iframe>
+                </div>
+
+                <div class="booking-fallback">
+                    <p>¿No te carga el calendario? Escríbenos y te damos hueco igual.</p>
+                    <div class="booking-fallback-actions">
+                        <a class="btn-ghost" href="https://wa.me/34634440253?text=Hola%20Jon%2C%20quiero%20reservar%20la%20revisi%C3%B3n%20gratuita%20de%20un%20erg" target="_blank" rel="noopener">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-2.7-.4L4 21.5l1.6-4.4A8.2 8.2 0 0 1 3 11.5C3 6.8 7 3 12 3s9 3.8 9 8.5z"/>
+                            </svg>
+                            WhatsApp
+                        </a>
+                        <a class="btn-ghost" href="tel:+34634440253">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z"/>
+                            </svg>
+                            634 440 253
+                        </a>
+                    </div>
+                </div>
+
+                <p class="booking-note">
+                    Solicitud recibida al instante. <strong>Jon confirma personalmente cada cita</strong> — recibirás el email de confirmación con la fecha definitiva en menos de 24h.
                 </p>
             </div>
         </div>
@@ -1710,31 +2188,45 @@
     <section class="gift" id="regalo">
         <div class="gift-content">
             <div>
-                <div class="gift-badge">🎁 El regalo</div>
-                
+                <div class="gift-badge">06 — El regalo</div>
+
                 <h2 class="gift-title">
                     La guía de mantenimiento que <em>deberías haber tenido</em> desde el día uno.
                 </h2>
-                
+
                 <p class="gift-desc">
                     Un checklist profesional con todo lo que tienes que revisar en tu box, cuándo, y cómo detectar problemas antes de que te exploten en la cara.
                 </p>
-                
-                <form class="gift-form" id="leadForm" action="https://formspree.io/f/xqerpwvv" method="POST">
-                    <input type="hidden" name="_subject" value="🎁 Nueva descarga de guía — ERGO BOX">
-                    <input type="email" name="email" placeholder="tu@email.com" required aria-label="Tu email">
-                    <input type="text" name="box_name" placeholder="Nombre de tu box" required aria-label="Nombre de tu box">
+
+                <form class="gift-form" id="leadForm" action="https://formspree.io/f/xqerpwvv" method="POST" novalidate="false">
+                    <input type="hidden" name="_subject" value="Nueva descarga de guía — ERGO BOX">
+
+                    <div class="gift-field">
+                        <label for="lead-email">Tu email</label>
+                        <input type="email" id="lead-email" name="email" placeholder="tu@email.com" required
+                               autocomplete="email" inputmode="email" maxlength="120" spellcheck="false">
+                    </div>
+
+                    <div class="gift-field">
+                        <label for="lead-box">Nombre de tu box</label>
+                        <input type="text" id="lead-box" name="box_name" placeholder="CrossFit Málaga Centro" required
+                               autocomplete="organization" maxlength="80">
+                    </div>
+
+                    <div class="gift-error" id="leadError" role="alert" tabindex="-1" hidden></div>
+
                     <button type="submit">Descargar guía gratuita</button>
+
                     <p class="gift-privacy">
                         Te enviaremos la guía por email. Puede que algún consejo extra de vez en cuando. Nada de spam. Puedes darte de baja cuando quieras.
                     </p>
                 </form>
             </div>
-            
+
             <div class="gift-visual">
                 <div class="checklist-card">
                     <div class="checklist-card-header">
-                        📋 Checklist de ejemplo
+                        Checklist de ejemplo
                     </div>
                     <div class="checklist-item">
                         <input type="checkbox" id="check1">
@@ -1760,66 +2252,7 @@
             </div>
         </div>
     </section>
-
-    <!-- Trust Section -->
-    <section class="trust">
-        <div class="trust-content">
-            <div class="section-number" style="color: var(--amber);">05 — Por qué nosotros</div>
-            <h2 class="manifesto-title" style="margin-bottom: 0;">
-                Lo que nos hace <em>diferentes.</em>
-            </h2>
-            
-            <div class="trust-grid">
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">🔧</div>
-                    <h3 class="trust-cell-title">Somos atletas</h3>
-                    <p class="trust-cell-desc">
-                        Entrenamos en boxes como el tuyo. Sabemos lo que es un Fran con un erg que no responde.
-                    </p>
-                </div>
-                
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">📅</div>
-                    <h3 class="trust-cell-title">Calendario propio</h3>
-                    <p class="trust-cell-desc">
-                        Llevamos nosotros el control. Te avisamos cuando toca revisión. Tú no tienes que acordarte de nada.
-                    </p>
-                </div>
-                
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">🚦</div>
-                    <h3 class="trust-cell-title">Informe semáforo</h3>
-                    <p class="trust-cell-desc">
-                        Verde, ámbar, rojo. Sabes exactamente qué está bien, qué necesita atención, y qué es urgente.
-                    </p>
-                </div>
-                
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">💬</div>
-                    <h3 class="trust-cell-title">Sin corporate</h3>
-                    <p class="trust-cell-desc">
-                        Hablamos claro. Sin jerga técnica innecesaria. Sin presupuestos inflados. Sin presión.
-                    </p>
-                </div>
-                
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">📍</div>
-                    <h3 class="trust-cell-title">Local</h3>
-                    <p class="trust-cell-desc">
-                        Málaga y alrededores. Llegamos cuando nos necesitas. No esperamos semanas a un técnico de fuera.
-                    </p>
-                </div>
-                
-                <div class="trust-cell">
-                    <div class="trust-cell-icon">🤝</div>
-                    <h3 class="trust-cell-title">Reputación primero</h3>
-                    <p class="trust-cell-desc">
-                        Málaga es pequeña. El CrossFit, más. Cada trabajo es nuestra carta de presentación.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+  </main>
 
     <!-- Footer -->
     <footer>
@@ -1829,97 +2262,207 @@
                 <p class="footer-tagline">
                     "Tus coaches entrenan. Del equipo nos encargamos nosotros."
                 </p>
-                <p style="font-family: var(--sans); font-size: 14px; color: var(--steel); opacity: 0.7;">
+                <p class="footer-blurb">
                     Mantenimiento especializado de boxes de CrossFit y entrenamiento funcional en Málaga.
                 </p>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Contacto</h4>
                 <ul>
-                    <li><a href="mailto:hola@ergobox.es">hola@ergobox.es</a></li>
-                    <li><a href="tel:+34634440253">634 440 253</a></li>
-                    <li><a href="https://wa.me/34634440253" target="_blank" rel="noopener">WhatsApp</a></li>
-                    <li><a href="https://instagram.com/ergobox.es" target="_blank" rel="noopener">@ergobox.es</a></li>
+                    <li><a href="mailto:hola@ergobox.es">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/>
+                        </svg>
+                        hola@ergobox.es
+                    </a></li>
+                    <li><a href="tel:+34634440253">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6.5 3h3l1.5 4-2 1.5a12 12 0 0 0 6.5 6.5L17 13l4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 3 5.2 2 2 0 0 1 5 3z"/>
+                        </svg>
+                        634 440 253
+                    </a></li>
+                    <li><a href="https://wa.me/34634440253" target="_blank" rel="noopener">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-2.7-.4L4 21.5l1.6-4.4A8.2 8.2 0 0 1 3 11.5C3 6.8 7 3 12 3s9 3.8 9 8.5z"/>
+                        </svg>
+                        WhatsApp
+                    </a></li>
+                    <li><a href="https://instagram.com/ergobox.es" target="_blank" rel="noopener">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.2 6.8h.01"/>
+                        </svg>
+                        @ergobox.es
+                    </a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-section">
                 <h4>Zona de servicio</h4>
-                <ul>
-                    <li><a href="#">Málaga capital</a></li>
-                    <li><a href="#">Costa del Sol</a></li>
-                    <li><a href="#">Interior provincia</a></li>
+                <!-- These were <a href="#">: three visible links that went nowhere
+                     and threw on click. They are facts, not destinations. -->
+                <ul class="footer-areas">
+                    <li>Málaga capital</li>
+                    <li>Costa del Sol</li>
+                    <li>Interior provincia</li>
                 </ul>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
             <div>© 2026 ERGO BOX · Málaga</div>
-            <div>Hecho con 🖤 por atletas, para atletas</div>
+            <div>Hecho por atletas, para atletas</div>
         </div>
     </footer>
 
     <!-- Sticky mobile CTA -->
-    <div class="mobile-sticky-cta">
-        <a href="#reservar">⚡ Primera revisión de erg · GRATIS</a>
+    <div class="mobile-sticky-cta" id="stickyCta">
+        <a href="#reservar">Primera revisión de erg · GRATIS</a>
     </div>
 
     <script>
-        // Lead form handling — Formspree AJAX + auto PDF download
-        document.getElementById('leadForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = this;
-            const email = form.email.value;
-            const boxName = form.box_name.value;
-            const btn = form.querySelector('button');
-            btn.disabled = true;
-            btn.textContent = 'Enviando…';
+    (function () {
+        'use strict';
 
-            try {
-                // Send lead to Formspree (email + box name -> hola@ergobox.es)
-                const action = form.getAttribute('action');
-                const resp = await fetch(action, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json' },
-                    body: new FormData(form)
-                });
-                if (!resp.ok) console.warn('Formspree responded', resp.status);
-            } catch (err) { console.warn('Lead capture failed, continuing to download:', err); }
+        var PDF = 'guia-mantenimiento-ergo-box.pdf';
 
-            // Auto-download the PDF guide
-            const a = document.createElement('a');
-            a.href = 'guia-mantenimiento-ergo-box.pdf';
-            a.download = 'guia-mantenimiento-ergo-box.pdf';
+        function downloadGuide() {
+            var a = document.createElement('a');
+            a.href = PDF;
+            a.download = PDF;
             document.body.appendChild(a);
             a.click();
             a.remove();
+        }
 
-            // Success state
-            form.innerHTML = `
-                <div style="padding: 32px; background: rgba(245,241,232,0.1); border-radius: 8px; text-align: center; color: var(--paper);">
-                    <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
-                    <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; margin-bottom: 8px;">
-                        ¡Guía descargada!
-                    </div>
-                    <div style="font-family: var(--sans); font-size: 14px; opacity: 0.8;">
-                        Si no se abrió, <a href="guia-mantenimiento-ergo-box.pdf" style="color: var(--amber); text-decoration: underline;">pulsa aquí</a>.<br>
-                        También te la enviamos a ${email}
-                    </div>
-                </div>
-            `;
-        });
+        /* ---- Lead form: the outcome the user is shown is the outcome that
+           happened. A failed capture no longer renders as a success. ---- */
+        var form = document.getElementById('leadForm');
+        var errorBox = document.getElementById('leadError');
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        if (form) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                var btn = form.querySelector('button[type="submit"]');
+                var email = form.email.value.trim();
+                var label = btn.textContent;
+
+                errorBox.hidden = true;
+                btn.disabled = true;
+                btn.textContent = 'Enviando…';
+
+                var ok = false;
+                try {
+                    var resp = await fetch(form.getAttribute('action'), {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(form)
+                    });
+                    ok = resp.ok;
+                } catch (err) {
+                    ok = false;
                 }
+
+                downloadGuide();
+
+                if (!ok) {
+                    // The guide still downloads; we just don't promise an email
+                    // we have no way to send.
+                    errorBox.innerHTML =
+                        'La guía se está descargando, pero no hemos podido registrar tu email, ' +
+                        'así que no podremos envi&aacute;rtela. Si la quieres por correo, escríbenos a ' +
+                        '<a href="mailto:hola@ergobox.es">hola@ergobox.es</a>.';
+                    errorBox.hidden = false;
+                    btn.disabled = false;
+                    btn.textContent = label;
+                    errorBox.focus && errorBox.focus();
+                    return;
+                }
+
+                var success = document.createElement('div');
+                success.className = 'gift-success';
+                success.setAttribute('role', 'status');
+
+                var icon = '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+                    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                    '<circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5 5.5-6"/></svg>';
+
+                var title = document.createElement('div');
+                title.className = 'gift-success-title';
+                title.textContent = '¡Guía descargada!';
+
+                var body = document.createElement('div');
+                body.className = 'gift-success-body';
+                body.innerHTML = 'Si no se abrió, <a href="' + PDF + '">pulsa aquí</a>.<br>También te la enviamos a ';
+                // textContent, not interpolation: the address is user input.
+                body.appendChild(document.createTextNode(email));
+
+                success.innerHTML = icon;
+                success.appendChild(title);
+                success.appendChild(body);
+
+                form.replaceWith(success);
+            });
+        }
+
+        /* ---- Smooth scroll. Guarded: `href="#"` is not a valid selector and
+           used to throw on every click. ---- */
+        document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (e) {
+                var href = this.getAttribute('href');
+                if (!href || href === '#') return;
+
+                var target = document.getElementById(href.slice(1));
+                if (!target) return;
+
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Keyboard focus has to follow the scroll, or tab order stays behind.
+                target.setAttribute('tabindex', '-1');
+                target.focus({ preventScroll: true });
             });
         });
+
+        /* ---- Nav surface + sticky CTA, both driven off the hero CTA ---- */
+        var nav = document.querySelector('nav');
+        var sticky = document.getElementById('stickyCta');
+        var heroCta = document.querySelector('.hero-actions .btn-primary');
+
+        if (nav) {
+            var onScroll = function () {
+                nav.classList.toggle('is-scrolled', window.scrollY > 40);
+            };
+            onScroll();
+            window.addEventListener('scroll', onScroll, { passive: true });
+        }
+
+        if (sticky && heroCta && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                sticky.classList.toggle('is-visible', !entries[0].isIntersecting);
+            }, { rootMargin: '-72px 0px 0px 0px' }).observe(heroCta);
+        } else if (sticky) {
+            sticky.classList.add('is-visible');
+        }
+
+        /* ---- Calendar embed: drop the skeleton once the frame paints, and
+           lead with the WhatsApp/phone fallback if it never does. ---- */
+        var frame = document.querySelector('.cal-embed-frame iframe');
+        var skeleton = document.querySelector('.cal-skeleton');
+        var fallback = document.querySelector('.booking-fallback');
+
+        if (frame) {
+            var settled = false;
+            var settle = function (loaded) {
+                if (settled) return;
+                settled = true;
+                if (skeleton) skeleton.remove();
+                if (!loaded && fallback) fallback.classList.add('is-primary');
+            };
+            frame.addEventListener('load', function () { settle(true); });
+            setTimeout(function () { settle(false); }, 8000);
+        }
+    })();
     </script>
 </body>
 </html>
