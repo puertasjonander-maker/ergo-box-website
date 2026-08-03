@@ -93,6 +93,38 @@ transform only — never `width`, `height`, `padding` or `margin`.
 
 ---
 
+## Page order
+
+1. Hero
+2. Manifesto — `#servicio`, where "Nuestro servicio" lands
+3. Problems — `#problemas`
+4. Offer — `#oferta`
+5. Cómo trabajamos — `#confianza`, no nav entry
+6. **Solicita presupuesto** — `#presupuesto`, quote request form
+7. **Pide cita** — `#reservar`, the cal.com embed
+8. Guía gratuita — `#regalo`, lead magnet
+9. Footer
+
+Two conversion paths sit next to each other on purpose: a quote for work that goes
+beyond the free check, and an appointment for the free check itself. Both post to the
+same Formspree endpoint, separated by `_subject`.
+
+---
+
+## Forms
+
+Two forms, one rule: **the outcome shown is the outcome that happened.** Both branch
+on `response.ok`. A failed POST never renders as success — it keeps the form intact,
+re-enables the button, and hands over a channel that works (email, WhatsApp).
+
+User input is written with `textContent`, never interpolated into `innerHTML`.
+
+Both need visible labels, `autocomplete`, `maxlength`, and a 44px minimum target. On
+the quote form the checkbox target is the whole pill, not the 18px box inside it — an
+automated target-size check that measures the `input` will report a false positive.
+
+---
+
 ## Layout
 
 - Sections: `120px 80px` desktop, `20px` horizontal on mobile.
@@ -112,10 +144,13 @@ There are none, and that is the decision. Sections are not announced — no
 `01 — Manifiesto`, no eyebrow chip above the `h1`. Each section is introduced by its
 own heading and nothing else.
 
-Navigation names what the visitor is looking for, not what we call the section:
-**Qué falla · Qué incluye · Cómo trabajamos · Guía gratuita**. Four entries, not
-five — the manifesto is the first thing below the hero and does not need an index
-entry.
+Navigation is one entry per thing the visitor can do:
+**Nuestro servicio · Solicita presupuesto · Pide cita · Guía gratuita**.
+
+`Nuestro servicio` (`#servicio`) covers the manifesto, the problems and the offer as
+a single block — three sections, one nav target. `Cómo trabajamos` sits between the
+offer and the quote form without a nav entry; it is read on the way past, not
+navigated to.
 
 If a label ever feels necessary, make it descriptive of the content. Do not
 reintroduce numbering or a tracked-caps chip.
