@@ -341,26 +341,6 @@
             max-width: 640px;
         }
 
-        .hero-eyebrow {
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--amber-text);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .hero-eyebrow::before {
-            content: '';
-            width: 32px;
-            height: 1px;
-            background: var(--amber);
-        }
-
         .hero h1 {
             font-family: var(--font-editorial);
             font-size: clamp(42px, 5.2vw, 72px);
@@ -578,21 +558,10 @@
             margin: 0 auto;
         }
 
+        /* The numbered labels these headers were built around are gone; the
+           heading now starts at the margin like every other section. */
         .manifesto-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 80px;
-            margin-bottom: 80px;
-        }
-
-        .section-number {
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--steel);
-            margin-bottom: 16px;
+            margin-bottom: 72px;
         }
 
         .manifesto-title {
@@ -629,7 +598,7 @@
 
         /* Pull quote */
         .pull-quote {
-            margin: 80px 0;
+            margin: 80px 0 0;
             padding: 60px 0;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
@@ -644,16 +613,54 @@
             line-height: 1.3;
             letter-spacing: -0.005em;
             max-width: 900px;
-            margin: 0 auto 24px;
+            margin: 0 auto;
         }
 
-        .pull-quote cite {
+        /* Founder note — the one personal voice on the page. Offset from the
+           body copy by a rule rather than a card, so it reads as an aside in a
+           magazine and not as another UI panel. */
+        .founder {
+            max-width: 62ch;
+            margin: 0 auto;
+            padding-top: 48px;
+            display: grid;
+            gap: 28px;
+        }
+
+        .founder-note p {
+            font-family: var(--font-editorial);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--steel);
+        }
+
+        .founder-note p + p {
+            margin-top: 18px;
+        }
+
+        .founder-sign {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+        }
+
+        .founder-name {
+            font-family: var(--font-editorial);
+            font-size: 22px;
+            font-style: italic;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .founder-role {
             font-family: var(--font-spec);
-            font-size: 13px;
-            font-style: normal;
+            font-size: 11px;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.6px;
             color: var(--amber-text);
         }
 
@@ -666,14 +673,7 @@
 
         .problem-header {
             max-width: 1200px;
-            margin: 0 auto 80px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 80px;
-        }
-
-        .problem .section-number {
-            color: var(--amber);
+            margin: 0 auto 72px;
         }
 
         .problem-title {
@@ -778,9 +778,6 @@
             z-index: 2;
         }
 
-        .offer-left .section-number {
-            color: var(--amber-text);
-        }
 
         .offer-title {
             font-family: var(--font-editorial);
@@ -927,11 +924,6 @@
             text-align: center;
         }
 
-        .booking .section-number {
-            color: var(--amber-text);
-            justify-content: center;
-            display: flex;
-        }
 
         .booking-title {
             font-family: var(--font-editorial);
@@ -1199,18 +1191,6 @@
             z-index: 2;
         }
 
-        .gift-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--amber-soft);
-            margin-bottom: 24px;
-        }
 
         .gift-title {
             font-family: var(--font-editorial);
@@ -1443,7 +1423,6 @@
             margin: 0 auto;
         }
 
-        .trust .section-number { color: var(--amber-text); }
 
         .trust-title {
             font-family: var(--font-editorial);
@@ -1499,6 +1478,258 @@
         }
 
         .trust-cell-desc {
+            font-family: var(--font-ui);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--steel);
+        }
+
+        /* ============ QUOTE REQUEST ============ */
+        /* Sits between two paper sections, so it takes the warm tone to
+           separate itself without spending another ink slab. */
+        .quote {
+            padding: 120px 80px;
+            background: var(--paper-warm);
+        }
+
+        .quote-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            gap: 72px;
+            align-items: start;
+        }
+
+        .quote-title {
+            font-family: var(--font-editorial);
+            font-size: clamp(36px, 4.5vw, 60px);
+            font-weight: var(--w-display);
+            line-height: 1.05;
+            letter-spacing: -0.012em;
+            margin-bottom: 24px;
+        }
+
+        .quote-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--amber-text);
+        }
+
+        .quote-desc {
+            font-family: var(--font-editorial);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--steel);
+            margin-bottom: 32px;
+            max-width: 46ch;
+        }
+
+        .quote-points {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .quote-point {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: start;
+            gap: 14px;
+            font-family: var(--font-ui);
+            font-size: 15px;
+            line-height: 1.55;
+            color: var(--steel);
+        }
+
+        .quote-point svg {
+            color: var(--amber-text);
+            margin-top: 2px;
+        }
+
+        .quote-form {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 36px;
+            box-shadow: 0 16px 48px rgba(15, 14, 12, 0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .quote-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .quote-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+
+        .quote-field label,
+        .quote-legend {
+            font-family: var(--font-spec);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--amber-text);
+        }
+
+        .quote-optional {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--steel);
+        }
+
+        .quote-form input,
+        .quote-form textarea {
+            font-family: var(--font-ui);
+            font-size: 16px;
+            width: 100%;
+            padding: 14px 16px;
+            color: var(--ink);
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .quote-form textarea {
+            min-height: 112px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .quote-form input::placeholder,
+        .quote-form textarea::placeholder {
+            color: #6a6a66;
+        }
+
+        .quote-form input:focus,
+        .quote-form textarea:focus {
+            border-color: var(--amber-deep);
+            box-shadow: 0 0 0 3px rgba(217, 123, 41, 0.22);
+        }
+
+        .quote-fieldset {
+            border: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quote-checks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quote-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            min-height: 44px;
+            padding: 0 16px 0 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--paper);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            color: var(--ink);
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .quote-check input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            padding: 0;
+            accent-color: var(--amber-deep);
+            cursor: pointer;
+        }
+
+        .quote-check:has(input:checked) {
+            border-color: var(--amber-deep);
+            background: #fff;
+        }
+
+        .quote-form button {
+            font-family: var(--font-ui);
+            font-size: 16px;
+            font-weight: 600;
+            min-height: 52px;
+            padding: 16px 32px;
+            background: var(--ink);
+            color: var(--paper);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+
+        .quote-form button:hover {
+            background: var(--amber);
+            color: var(--ink);
+            transform: translateY(-2px);
+        }
+
+        .quote-form button:disabled {
+            opacity: 0.65;
+            cursor: progress;
+            transform: none;
+        }
+
+        .quote-privacy {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--steel);
+        }
+
+        .quote-error[hidden] { display: none; }
+
+        .quote-error {
+            display: block;
+            padding: 14px 16px;
+            border: 1px solid var(--amber-deep);
+            border-radius: 4px;
+            background: rgba(217, 123, 41, 0.08);
+            font-family: var(--font-ui);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--ink);
+        }
+
+        .quote-error a { color: var(--amber-text); }
+
+        .quote-success {
+            padding: 36px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .quote-success svg { color: var(--amber-text); }
+
+        .quote-success-title {
+            font-family: var(--font-editorial);
+            font-size: 22px;
+            font-weight: 600;
+            margin: 12px 0 8px;
+        }
+
+        .quote-success-body {
             font-family: var(--font-ui);
             font-size: 15px;
             line-height: 1.6;
@@ -1649,10 +1880,9 @@
                 padding: 56px 40px 40px;
             }
             
-            .manifesto-header,
-            .problem-header,
             .offer-content,
-            .gift-content {
+            .gift-content,
+            .quote-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
@@ -1709,9 +1939,20 @@
             .offer,
             .booking,
             .gift,
-            .trust {
+            .trust,
+            .quote {
                 padding-left: 20px;
                 padding-right: 20px;
+            }
+
+            .quote-row {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .quote-form {
+                padding: 24px 20px;
+                gap: 16px;
             }
             
             .hero-content {
@@ -1932,12 +2173,13 @@
     <!-- Navigation -->
     <nav>
         <a href="/" class="nav-logo">ERG<span class="gear">O</span> BOX</a>
+        <!-- One entry per thing the visitor can do. "Nuestro servicio" covers
+             the manifesto, the problems and the offer as a single block. -->
         <ul class="nav-links">
-            <li><a href="#manifiesto">Manifiesto</a></li>
-            <li><a href="#problemas">El problema</a></li>
-            <li><a href="#oferta">La oferta</a></li>
-            <li><a href="#confianza">Por qué nosotros</a></li>
-            <li><a href="#regalo">El regalo</a></li>
+            <li><a href="#servicio">Nuestro servicio</a></li>
+            <li><a href="#presupuesto">Solicita presupuesto</a></li>
+            <li><a href="#reservar">Pide cita</a></li>
+            <li><a href="#regalo">Guía gratuita</a></li>
         </ul>
         <a href="#reservar" class="nav-cta">Reservar revisión</a>
     </nav>
@@ -1946,8 +2188,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-eyebrow">Mantenimiento de ergs y barras · Málaga</div>
-            
             <h1>
                 Tus coaches <em>entrenan.</em><br>
                 Del equipo nos <em>encargamos</em> nosotros.
@@ -1990,18 +2230,14 @@
         </div>
     </section>
 
-    <!-- Manifesto Section -->
-    <section class="manifesto" id="manifiesto">
+    <!-- "Nuestro servicio" starts here and runs through the problems and the
+         offer. This replaces the old #manifiesto id, which nothing links to. -->
+    <section class="manifesto" id="servicio">
         <div class="manifesto-header">
-            <div>
-                <div class="section-number">01 — Manifiesto</div>
-            </div>
-            <div>
-                <h2 class="manifesto-title">
-                    No somos un <em>servicio técnico.</em><br>
-                    Somos <em>atletas</em> que arreglan cosas.
-                </h2>
-            </div>
+            <h2 class="manifesto-title">
+                No somos un <em>servicio técnico.</em><br>
+                Somos <em>atletas</em> que arreglan cosas.
+            </h2>
         </div>
         
         <div class="manifesto-content">
@@ -2017,20 +2253,31 @@
             <blockquote>
                 "El mantenimiento no es un gasto. Es la diferencia entre un box que dura y uno que cierra."
             </blockquote>
-            <cite>— Filosofía ERGO BOX</cite>
         </div>
+
+        <!-- The signed note attributes the quote above; the page had no person
+             in it anywhere before this. -->
+        <aside class="founder">
+            <div class="founder-note">
+                <p>
+                    Monté ERGO BOX después de ver lo mismo en un box detrás de otro: gente dejándose la piel en levantar una comunidad y perdiendo tardes enteras detrás de una avería que no le tocaba arreglar.
+                </p>
+                <p>
+                    Llevar un box ya cuesta. Llegar a donde quieres llegar, más. Nosotros nos quedamos con la parte que te distrae, para que tú no pierdas el foco en lo que de verdad importa: tu gente entrenando.
+                </p>
+            </div>
+            <p class="founder-sign">
+                <span class="founder-name">Jon Ander</span>
+                <span class="founder-role">Fundador de ERGO BOX</span>
+            </p>
+        </aside>
     </section>
 
     <!-- Problem Section -->
     <section class="problem" id="problemas">
         <div class="problem-header">
-            <div>
-                <div class="section-number">02 — El problema</div>
-            </div>
-            <div>
-                <h2 class="problem-title">¿Te suena familiar?</h2>
-                <p class="problem-subtitle">Los fantasmas que acechan cada box de Málaga</p>
-            </div>
+            <h2 class="problem-title">¿Te suena familiar?</h2>
+            <p class="problem-subtitle">Los fantasmas que acechan cada box de Málaga</p>
         </div>
         
         <div class="problem-list">
@@ -2072,8 +2319,6 @@
     <section class="offer" id="oferta">
         <div class="offer-content">
             <div class="offer-left">
-                <div class="section-number">03 — La oferta</div>
-                
                 <h2 class="offer-title">
                     Primera revisión<br>
                     de un erg.<br>
@@ -2125,7 +2370,6 @@
          have to land before we ask for a slot, not after. -->
     <section class="trust" id="confianza">
         <div class="trust-content">
-            <div class="section-number">04 — Por qué nosotros</div>
             <h2 class="trust-title">
                 Lo que nos hace <em>diferentes.</em>
             </h2>
@@ -2198,18 +2442,107 @@
         </div>
     </section>
 
+    <!-- Quote Request -->
+    <section class="quote" id="presupuesto">
+        <div class="quote-content">
+            <div>
+                <h2 class="quote-title">
+                    ¿Necesitas algo <em>más que una revisión?</em>
+                </h2>
+
+                <p class="quote-desc">
+                    Cuéntanos qué tienes en el box y para qué nos necesitas. Te preparamos un presupuesto cerrado, sin letra pequeña.
+                </p>
+
+                <div class="quote-points">
+                    <div class="quote-point">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M4 9v6M7 6.5v11M17 6.5v11M20 9v6M7 12h10"/>
+                        </svg>
+                        Revisión completa del box, no de una sola máquina
+                    </div>
+                    <div class="quote-point">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>
+                        </svg>
+                        Mantenimiento continuo, con nosotros llevando el calendario
+                    </div>
+                    <div class="quote-point">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M14.7 6.3a4 4 0 0 1-5 5L6 15v3h3l3.7-3.7a4 4 0 0 1 5-5l1.6-1.6-2.3-2.3z"/>
+                        </svg>
+                        Reparaciones concretas: cadena, raíles, monitor, ventilador, tornillería
+                    </div>
+                </div>
+            </div>
+
+            <form class="quote-form" id="quoteForm" action="https://formspree.io/f/xqerpwvv" method="POST">
+                <input type="hidden" name="_subject" value="Solicitud de presupuesto — ERGO BOX">
+
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="q-name">Tu nombre</label>
+                        <input type="text" id="q-name" name="nombre" placeholder="Nombre y apellido" required
+                               autocomplete="name" maxlength="80">
+                    </div>
+                    <div class="quote-field">
+                        <label for="q-box">Nombre del box</label>
+                        <input type="text" id="q-box" name="box" placeholder="CrossFit Málaga Centro" required
+                               autocomplete="organization" maxlength="80">
+                    </div>
+                </div>
+
+                <div class="quote-row">
+                    <div class="quote-field">
+                        <label for="q-email">Email</label>
+                        <input type="email" id="q-email" name="email" placeholder="tu@email.com" required
+                               autocomplete="email" inputmode="email" maxlength="120" spellcheck="false">
+                    </div>
+                    <div class="quote-field">
+                        <label for="q-phone">Teléfono <span class="quote-optional">(opcional)</span></label>
+                        <input type="tel" id="q-phone" name="telefono" placeholder="600 000 000"
+                               autocomplete="tel" inputmode="tel" maxlength="24">
+                    </div>
+                </div>
+
+                <fieldset class="quote-fieldset">
+                    <legend class="quote-legend">Qué equipo tienes</legend>
+                    <div class="quote-checks">
+                        <label class="quote-check"><input type="checkbox" name="equipo" value="RowErg"> RowErg</label>
+                        <label class="quote-check"><input type="checkbox" name="equipo" value="BikeErg"> BikeErg</label>
+                        <label class="quote-check"><input type="checkbox" name="equipo" value="SkiErg"> SkiErg</label>
+                        <label class="quote-check"><input type="checkbox" name="equipo" value="Barras y discos"> Barras y discos</label>
+                        <label class="quote-check"><input type="checkbox" name="equipo" value="Otro"> Otro</label>
+                    </div>
+                </fieldset>
+
+                <div class="quote-field">
+                    <label for="q-detail">Qué necesitas</label>
+                    <textarea id="q-detail" name="detalle" required maxlength="1200"
+                              placeholder="Cuántas máquinas tienes, qué falla, cada cuánto os vendría bien una revisión…"></textarea>
+                </div>
+
+                <div class="quote-error" id="quoteError" role="alert" tabindex="-1" hidden></div>
+
+                <button type="submit">Solicitar presupuesto</button>
+
+                <p class="quote-privacy">
+                    Usamos tus datos solo para responderte a esta solicitud. Lo revisaremos y te prepararemos un presupuesto personalizado.
+                </p>
+            </form>
+        </div>
+    </section>
+
     <!-- Booking Section -->
     <section class="booking" id="reservar">
         <div class="booking-content">
-            <div class="section-number">05 — Reservar</div>
-
             <h2 class="booking-title">
                 Reserva tu revisión.<br>
                 <em>En tres pasos.</em>
             </h2>
 
             <p class="booking-desc">
-                Eliges día y hora. Te llega un acuse al instante. Jon confirma personalmente en menos de 24 horas — y entonces sí, queda fixed.
+                Eliges día y hora. Te llega un acuse al instante. Lo confirmamos personalmente en menos de 24 horas — y entonces sí, queda fixed.
             </p>
 
             <div class="booking-steps">
@@ -2223,9 +2556,9 @@
 
                 <div class="booking-step">
                     <div class="booking-step-num">Paso 02</div>
-                    <div class="booking-step-title">Jon confirma</div>
+                    <div class="booking-step-title">Lo confirmamos</div>
                     <div class="booking-step-desc">
-                        Te llega el acuse al momento. Jon revisa el hueco y confirma personalmente en menos de 24 horas. Sin sorpresas.
+                        Te llega el acuse al momento. Revisamos el hueco y lo confirmamos personalmente en menos de 24 horas. Sin sorpresas.
                     </div>
                 </div>
 
@@ -2263,7 +2596,7 @@
                 <div class="booking-fallback">
                     <p>¿No te carga el calendario? Escríbenos y te damos hueco igual.</p>
                     <div class="booking-fallback-actions">
-                        <a class="btn-ghost" href="https://wa.me/34634440253?text=Hola%20Jon%2C%20quiero%20reservar%20la%20revisi%C3%B3n%20gratuita%20de%20un%20erg" target="_blank" rel="noopener">
+                        <a class="btn-ghost" href="https://wa.me/34634440253?text=Hola%2C%20quiero%20reservar%20la%20revisi%C3%B3n%20gratuita%20de%20un%20erg" target="_blank" rel="noopener">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.6 9.6 0 0 1-2.7-.4L4 21.5l1.6-4.4A8.2 8.2 0 0 1 3 11.5C3 6.8 7 3 12 3s9 3.8 9 8.5z"/>
                             </svg>
@@ -2279,7 +2612,7 @@
                 </div>
 
                 <p class="booking-note">
-                    Solicitud recibida al instante. <strong>Jon confirma personalmente cada cita</strong> — recibirás el email de confirmación con la fecha definitiva en menos de 24h.
+                    Solicitud recibida al instante. <strong>Confirmamos personalmente cada cita</strong> — recibirás el email de confirmación con la fecha definitiva en menos de 24h.
                 </p>
             </div>
         </div>
@@ -2289,8 +2622,6 @@
     <section class="gift" id="regalo">
         <div class="gift-content">
             <div>
-                <div class="gift-badge">06 — El regalo</div>
-
                 <h2 class="gift-title">
                     La guía de mantenimiento que <em>deberías haber tenido</em> desde el día uno.
                 </h2>
@@ -2504,6 +2835,70 @@
                 success.appendChild(body);
 
                 form.replaceWith(success);
+            });
+        }
+
+        /* ---- Quote request. Same rule as the guide form: the outcome shown
+           is the outcome that happened. A failed POST is never a success. ---- */
+        var quoteForm = document.getElementById('quoteForm');
+        var quoteError = document.getElementById('quoteError');
+
+        if (quoteForm) {
+            quoteForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                var btn = quoteForm.querySelector('button[type="submit"]');
+                var label = btn.textContent;
+
+                quoteError.hidden = true;
+                btn.disabled = true;
+                btn.textContent = 'Enviando…';
+
+                var ok = false;
+                try {
+                    var resp = await fetch(quoteForm.getAttribute('action'), {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(quoteForm)
+                    });
+                    ok = resp.ok;
+                } catch (err) {
+                    ok = false;
+                }
+
+                if (!ok) {
+                    // Nothing was sent, so say so and hand over a channel that works.
+                    quoteError.innerHTML =
+                        'No hemos podido enviar tu solicitud. Escríbenos a ' +
+                        '<a href="mailto:hola@ergobox.es">hola@ergobox.es</a> o por ' +
+                        '<a href="https://wa.me/34634440253" target="_blank" rel="noopener">WhatsApp</a> ' +
+                        'y lo vemos igual.';
+                    quoteError.hidden = false;
+                    btn.disabled = false;
+                    btn.textContent = label;
+                    quoteError.focus();
+                    return;
+                }
+
+                var done = document.createElement('div');
+                done.className = 'quote-success';
+                done.setAttribute('role', 'status');
+                done.innerHTML =
+                    '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+                    'stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+                    '<circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5 5.5-6"/></svg>';
+
+                var t = document.createElement('div');
+                t.className = 'quote-success-title';
+                t.textContent = 'Solicitud recibida.';
+
+                var b = document.createElement('div');
+                b.className = 'quote-success-body';
+                b.textContent = 'Lo revisaremos y te prepararemos un presupuesto personalizado para tu box.';
+
+                done.appendChild(t);
+                done.appendChild(b);
+                quoteForm.replaceWith(done);
             });
         }
 

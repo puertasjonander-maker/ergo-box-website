@@ -93,6 +93,38 @@ transform only — never `width`, `height`, `padding` or `margin`.
 
 ---
 
+## Page order
+
+1. Hero
+2. Manifesto — `#servicio`, where "Nuestro servicio" lands
+3. Problems — `#problemas`
+4. Offer — `#oferta`
+5. Cómo trabajamos — `#confianza`, no nav entry
+6. **Solicita presupuesto** — `#presupuesto`, quote request form
+7. **Pide cita** — `#reservar`, the cal.com embed
+8. Guía gratuita — `#regalo`, lead magnet
+9. Footer
+
+Two conversion paths sit next to each other on purpose: a quote for work that goes
+beyond the free check, and an appointment for the free check itself. Both post to the
+same Formspree endpoint, separated by `_subject`.
+
+---
+
+## Forms
+
+Two forms, one rule: **the outcome shown is the outcome that happened.** Both branch
+on `response.ok`. A failed POST never renders as success — it keeps the form intact,
+re-enables the button, and hands over a channel that works (email, WhatsApp).
+
+User input is written with `textContent`, never interpolated into `innerHTML`.
+
+Both need visible labels, `autocomplete`, `maxlength`, and a 44px minimum target. On
+the quote form the checkbox target is the whole pill, not the 18px box inside it — an
+automated target-size check that measures the `input` will report a false positive.
+
+---
+
 ## Layout
 
 - Sections: `120px 80px` desktop, `20px` horizontal on mobile.
@@ -106,21 +138,34 @@ transform only — never `width`, `height`, `padding` or `margin`.
 
 ---
 
+## Section labels
+
+There are none, and that is the decision. Sections are not announced — no
+`01 — Manifiesto`, no eyebrow chip above the `h1`. Each section is introduced by its
+own heading and nothing else.
+
+Navigation is one entry per thing the visitor can do:
+**Nuestro servicio · Solicita presupuesto · Pide cita · Guía gratuita**.
+
+`Nuestro servicio` (`#servicio`) covers the manifesto, the problems and the offer as
+a single block — three sections, one nav target. `Cómo trabajamos` sits between the
+offer and the quote form without a nav entry; it is read on the way past, not
+navigated to.
+
+If a label ever feels necessary, make it descriptive of the content. Do not
+reintroduce numbering or a tracked-caps chip.
+
+---
+
 ## Deliberate exceptions to the impeccable floor
 
-These fire on the detector and are kept on purpose. Do not "fix" them without asking.
+These two fire on the detector and are kept on purpose. Do not "fix" them without
+asking.
 
-- **Section numbering `01 — 06`** (`kicker-above-heading`, `numbered-section-labels`).
-  The page is one linear narrative and the numbers are its reading order; the nav
-  mirrors them.
-- **Hero eyebrow** (`hero-eyebrow-chip`, `all-caps-body`). It carries the service and
-  the city, neither of which appears in the `h1`. This is the one place where the
-  skill's floor and the brief genuinely disagree.
 - **Oversized `h1`** (`oversized-h1`). Persuade surface; display type carries the
   voice. The primary CTA is still above the fold at 1440×900 — that is the constraint
   that matters, and it is checked.
 - **Cream page background** (`cream-palette`). The brand's paper.
-- **Em-dash density** (advisory). The client's writing voice.
 
 ---
 
@@ -128,7 +173,15 @@ These fire on the detector and are kept on purpose. Do not "fix" them without as
 
 Not design defects — missing inputs. Listed so nobody mistakes them for finished work.
 
-- No social proof anywhere: no testimonial, no named box, no photo of Jon, no surname.
+- No social proof: no testimonial, no named client box, no review. The founder note
+  in the manifesto is the only human on the page — it is a first-person story, not
+  third-party proof, and the two do different jobs.
+- No portrait. The `.founder` block is built to take one: a square image before
+  `.founder-note` and a two-column grid is all it needs. A photo would carry the
+  "cercanía" the note is reaching for better than the note alone.
+- No surname, and the name appears once, in the note. Operational copy speaks as
+  "nosotros" on purpose — do not reintroduce a first name into process claims like
+  "X confirma tu cita".
 - No price for the ongoing (paid) service, no insurance/liability statement, no
   cancellation policy.
 - No `aviso legal` and no `política de privacidad`, both of which the gift form's data
