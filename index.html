@@ -341,26 +341,6 @@
             max-width: 640px;
         }
 
-        .hero-eyebrow {
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--amber-text);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .hero-eyebrow::before {
-            content: '';
-            width: 32px;
-            height: 1px;
-            background: var(--amber);
-        }
-
         .hero h1 {
             font-family: var(--font-editorial);
             font-size: clamp(42px, 5.2vw, 72px);
@@ -578,21 +558,10 @@
             margin: 0 auto;
         }
 
+        /* The numbered labels these headers were built around are gone; the
+           heading now starts at the margin like every other section. */
         .manifesto-header {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 80px;
-            margin-bottom: 80px;
-        }
-
-        .section-number {
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--steel);
-            margin-bottom: 16px;
+            margin-bottom: 72px;
         }
 
         .manifesto-title {
@@ -666,14 +635,7 @@
 
         .problem-header {
             max-width: 1200px;
-            margin: 0 auto 80px;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 80px;
-        }
-
-        .problem .section-number {
-            color: var(--amber);
+            margin: 0 auto 72px;
         }
 
         .problem-title {
@@ -778,9 +740,6 @@
             z-index: 2;
         }
 
-        .offer-left .section-number {
-            color: var(--amber-text);
-        }
 
         .offer-title {
             font-family: var(--font-editorial);
@@ -927,11 +886,6 @@
             text-align: center;
         }
 
-        .booking .section-number {
-            color: var(--amber-text);
-            justify-content: center;
-            display: flex;
-        }
 
         .booking-title {
             font-family: var(--font-editorial);
@@ -1199,18 +1153,6 @@
             z-index: 2;
         }
 
-        .gift-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-spec);
-            font-size: 12px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--amber-soft);
-            margin-bottom: 24px;
-        }
 
         .gift-title {
             font-family: var(--font-editorial);
@@ -1443,7 +1385,6 @@
             margin: 0 auto;
         }
 
-        .trust .section-number { color: var(--amber-text); }
 
         .trust-title {
             font-family: var(--font-editorial);
@@ -1649,8 +1590,6 @@
                 padding: 56px 40px 40px;
             }
             
-            .manifesto-header,
-            .problem-header,
             .offer-content,
             .gift-content {
                 grid-template-columns: 1fr;
@@ -1932,12 +1871,14 @@
     <!-- Navigation -->
     <nav>
         <a href="/" class="nav-logo">ERG<span class="gear">O</span> BOX</a>
+        <!-- Named for what the visitor is looking for, not for what we call
+             the section internally. Four, not five: the manifesto is the first
+             thing you scroll into and does not need an index entry. -->
         <ul class="nav-links">
-            <li><a href="#manifiesto">Manifiesto</a></li>
-            <li><a href="#problemas">El problema</a></li>
-            <li><a href="#oferta">La oferta</a></li>
-            <li><a href="#confianza">Por qué nosotros</a></li>
-            <li><a href="#regalo">El regalo</a></li>
+            <li><a href="#problemas">Qué falla</a></li>
+            <li><a href="#oferta">Qué incluye</a></li>
+            <li><a href="#confianza">Cómo trabajamos</a></li>
+            <li><a href="#regalo">Guía gratuita</a></li>
         </ul>
         <a href="#reservar" class="nav-cta">Reservar revisión</a>
     </nav>
@@ -1946,8 +1887,6 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-eyebrow">Mantenimiento de ergs y barras · Málaga</div>
-            
             <h1>
                 Tus coaches <em>entrenan.</em><br>
                 Del equipo nos <em>encargamos</em> nosotros.
@@ -1993,15 +1932,10 @@
     <!-- Manifesto Section -->
     <section class="manifesto" id="manifiesto">
         <div class="manifesto-header">
-            <div>
-                <div class="section-number">01 — Manifiesto</div>
-            </div>
-            <div>
-                <h2 class="manifesto-title">
-                    No somos un <em>servicio técnico.</em><br>
-                    Somos <em>atletas</em> que arreglan cosas.
-                </h2>
-            </div>
+            <h2 class="manifesto-title">
+                No somos un <em>servicio técnico.</em><br>
+                Somos <em>atletas</em> que arreglan cosas.
+            </h2>
         </div>
         
         <div class="manifesto-content">
@@ -2024,13 +1958,8 @@
     <!-- Problem Section -->
     <section class="problem" id="problemas">
         <div class="problem-header">
-            <div>
-                <div class="section-number">02 — El problema</div>
-            </div>
-            <div>
-                <h2 class="problem-title">¿Te suena familiar?</h2>
-                <p class="problem-subtitle">Los fantasmas que acechan cada box de Málaga</p>
-            </div>
+            <h2 class="problem-title">¿Te suena familiar?</h2>
+            <p class="problem-subtitle">Los fantasmas que acechan cada box de Málaga</p>
         </div>
         
         <div class="problem-list">
@@ -2072,8 +2001,6 @@
     <section class="offer" id="oferta">
         <div class="offer-content">
             <div class="offer-left">
-                <div class="section-number">03 — La oferta</div>
-                
                 <h2 class="offer-title">
                     Primera revisión<br>
                     de un erg.<br>
@@ -2125,7 +2052,6 @@
          have to land before we ask for a slot, not after. -->
     <section class="trust" id="confianza">
         <div class="trust-content">
-            <div class="section-number">04 — Por qué nosotros</div>
             <h2 class="trust-title">
                 Lo que nos hace <em>diferentes.</em>
             </h2>
@@ -2201,8 +2127,6 @@
     <!-- Booking Section -->
     <section class="booking" id="reservar">
         <div class="booking-content">
-            <div class="section-number">05 — Reservar</div>
-
             <h2 class="booking-title">
                 Reserva tu revisión.<br>
                 <em>En tres pasos.</em>
@@ -2289,8 +2213,6 @@
     <section class="gift" id="regalo">
         <div class="gift-content">
             <div>
-                <div class="gift-badge">06 — El regalo</div>
-
                 <h2 class="gift-title">
                     La guía de mantenimiento que <em>deberías haber tenido</em> desde el día uno.
                 </h2>

@@ -106,21 +106,31 @@ transform only — never `width`, `height`, `padding` or `margin`.
 
 ---
 
+## Section labels
+
+There are none, and that is the decision. Sections are not announced — no
+`01 — Manifiesto`, no eyebrow chip above the `h1`. Each section is introduced by its
+own heading and nothing else.
+
+Navigation names what the visitor is looking for, not what we call the section:
+**Qué falla · Qué incluye · Cómo trabajamos · Guía gratuita**. Four entries, not
+five — the manifesto is the first thing below the hero and does not need an index
+entry.
+
+If a label ever feels necessary, make it descriptive of the content. Do not
+reintroduce numbering or a tracked-caps chip.
+
+---
+
 ## Deliberate exceptions to the impeccable floor
 
-These fire on the detector and are kept on purpose. Do not "fix" them without asking.
+These two fire on the detector and are kept on purpose. Do not "fix" them without
+asking.
 
-- **Section numbering `01 — 06`** (`kicker-above-heading`, `numbered-section-labels`).
-  The page is one linear narrative and the numbers are its reading order; the nav
-  mirrors them.
-- **Hero eyebrow** (`hero-eyebrow-chip`, `all-caps-body`). It carries the service and
-  the city, neither of which appears in the `h1`. This is the one place where the
-  skill's floor and the brief genuinely disagree.
 - **Oversized `h1`** (`oversized-h1`). Persuade surface; display type carries the
   voice. The primary CTA is still above the fold at 1440×900 — that is the constraint
   that matters, and it is checked.
 - **Cream page background** (`cream-palette`). The brand's paper.
-- **Em-dash density** (advisory). The client's writing voice.
 
 ---
 
