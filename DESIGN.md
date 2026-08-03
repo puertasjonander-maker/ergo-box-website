@@ -173,7 +173,15 @@ asking.
 
 Not design defects — missing inputs. Listed so nobody mistakes them for finished work.
 
-- No social proof anywhere: no testimonial, no named box, no photo of Jon, no surname.
+- No social proof: no testimonial, no named client box, no review. The founder note
+  in the manifesto is the only human on the page — it is a first-person story, not
+  third-party proof, and the two do different jobs.
+- No portrait. The `.founder` block is built to take one: a square image before
+  `.founder-note` and a two-column grid is all it needs. A photo would carry the
+  "cercanía" the note is reaching for better than the note alone.
+- No surname, and the name appears once, in the note. Operational copy speaks as
+  "nosotros" on purpose — do not reintroduce a first name into process claims like
+  "X confirma tu cita".
 - No price for the ongoing (paid) service, no insurance/liability statement, no
   cancellation policy.
 - No `aviso legal` and no `política de privacidad`, both of which the gift form's data
